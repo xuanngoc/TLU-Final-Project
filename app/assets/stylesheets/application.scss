@@ -19,3 +19,40 @@
 
 @import "users";
 
+.side_bar {
+  background-color: #101A32;
+
+  .logo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .navbar {
+    margin-top: 50px;
+    font-size: medium;
+
+    .nav-item {
+      // margin-top: 5px;
+      // border-bottom: 1px solid black;
+      transition: 1s;
+
+      a {
+        color: #ffffff;
+      }
+    }
+
+    .nav-item:hover {
+      margin-left: 7px;
+    }
+  }
+}
+
+.main {
+  background-color: #dff9fb;
+}
+
+.row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+

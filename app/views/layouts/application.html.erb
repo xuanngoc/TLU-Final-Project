@@ -11,7 +11,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="row">
+      <div class="col-2 side_bar vh-100">
+        <%= render 'layouts/side_bar' %>
+      </div>
+
+      <div class="col-10">
+        <%= render 'layouts/header' %>
+        <div class="main vh-100">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
     <%= toastr_flash %>
   </body>
 </html>

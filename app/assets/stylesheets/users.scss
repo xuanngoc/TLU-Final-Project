@@ -1,4 +1,20 @@
 .login {
-  font-size: 3rem;
   background-image: image-url('IMG_20201005_070459_569.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.form-login {
+  font-size: 1.4rem;
+  font-family: 'Times New Roman', Times, serif;
+  opacity: 0.99;
+  background-color: #c8d6e5;
+}
+
+.form-login {
+  input {
+    border: none;
+    height: 30px;
+  }
 }
