@@ -11,18 +11,26 @@
   </head>
 
   <body>
-    <div class="row">
-      <div class="col-2 side_bar vh-100">
-        <%= render 'layouts/side_bar' %>
-      </div>
+    <% if user_signed_in? %>
+      <div class="row">
+        <div class="col-2 side_bar vh-100">
+          <% if current_user.role == 1 %>
+            <%= render 'layouts/side_bar_education' %>
+          <% else %>
+            <%= render 'layouts/side_bar' %>
+          <% end %>
+        </div>
 
-      <div class="col-10">
-        <%= render 'layouts/header' %>
-        <div class="main vh-100">
-          <%= yield %>
+        <div class="col-10">
+          <%= render 'layouts/header' %>
+          <div class="main vh-100">
+            <%= yield %>
+          </div>
         </div>
       </div>
-    </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
     <%= toastr_flash %>
   </body>
 </html>
