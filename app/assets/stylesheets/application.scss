@@ -14,10 +14,10 @@
  *= require_self
  */
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
 
-@import "users";
+// @import "users";
 
 .side_bar {
   background-color: #101A32;
@@ -43,6 +43,15 @@
 
     .nav-item:hover {
       margin-left: 7px;
+    }
+
+    li::after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 100%;
+      margin: 10px;
+      background: #f00;
     }
   }
 }
