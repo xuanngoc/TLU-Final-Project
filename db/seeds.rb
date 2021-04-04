@@ -14,4 +14,4 @@ end
 
 Department.create(code: 'CTI', name: 'Bo mon Tin')
 
-Teacher.create(full_name: 'Bui Xuan Ngoc', gender: 1, department_id: Department.first, user_id: first_user.id)
+Teacher.create(full_name: 'Bui Xuan Ngoc', gender: true, department_id: Department.first, user_id: first_user.id)
