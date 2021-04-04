@@ -41,6 +41,10 @@
   border-color: #f5f6fa !important;
 }
 
+.bg-center {
+  background-color: #c7ecee !important;
+}
+
 .side_bar {
   background-color: #101A32;
 
@@ -79,7 +83,8 @@
 }
 
 .header {
-  background-color: #dff9fb;
+  background-color: #dfe6e9;
+  min-height: 100px;
 }
 
 .row {
@@ -87,3 +92,6 @@
   margin-right: 0px !important;
 }
 
+.main {
+  background-color: #dff9fb;
+}
