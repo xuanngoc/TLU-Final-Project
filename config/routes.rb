@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :department
-
+  resources :departments do
+    resources :teachers
+  end
 
 end

@@ -1,4 +1,4 @@
-class DepartmentController < ApplicationController
+class DepartmentsController < ApplicationController
   before_action :find_department, only: %i[edit update show destroy]
 
   def index
@@ -13,8 +13,8 @@ class DepartmentController < ApplicationController
 
   def create
     @department = Department.new(department_params)
-    if @department.save
-      flash[:notice] = 'Create successfull'
+    if @department.save!
+      flash[:notice] = 'Create successful'
     else
       flash[:alert] = 'Create failed'
     end

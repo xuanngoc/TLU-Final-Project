@@ -5,7 +5,7 @@
   <div class="col-2">
     <% if user_signed_in? %>
       <div class="">
-        <span> Hello, <strong><%= current_user.full_name %></strong> </span>
+        <span> Hello, <strong><%= current_user.teacher.full_name %></strong> </span>
         <span><%= current_user.role %></span>
       </div>
       <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
