@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   enum role: [ :admin, :education, :accountting, :teacher, :headmaster ]
 
+  has_one :teacher
+
 end

@@ -19,6 +19,28 @@
 
 // @import "users";
 
+.btn-primary {
+  background-color: #2f343f !important;
+  border-color: #f5f6fa !important;
+
+  :hover {
+    background-color: #2f3640 !important;
+  }
+}
+
+.btn-secondary {
+  background-color: #44bd32 !important;
+  border-color: #f5f6fa !important;
+
+  :hover {
+    background-color: #44bd32 !important;
+  }
+}
+
+.btn-danger {
+  border-color: #f5f6fa !important;
+}
+
 .side_bar {
   background-color: #101A32;
 
@@ -56,7 +78,7 @@
   }
 }
 
-.main {
+.header {
   background-color: #dff9fb;
 }
 

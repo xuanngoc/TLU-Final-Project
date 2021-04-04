@@ -1,0 +1,42 @@
+
+<div>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Mã</th>
+        <th scope="col">Họ tên</th>
+        <th scope="col">Thuộc bộ môn</th>
+        <th scope="col">Giới tính</th>
+        <th scope="col">Trình độ học vấn</th>
+        <th scope="col">Địa chỉ</th>
+        <th scope="col">Ngày sinh</th>
+
+        <th scope="col">Hành động</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <% @teachers.each_with_index do |teacher, index| %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td><%= teacher.code %></td>
+          <td><%= teacher.full_name %></td>
+          <td><%= teacher.department.name %></td>
+          <td><%= teacher.gender %></td>
+          <td><%= teacher.academic_levels %></td>
+          <td><%= teacher.address %></td>
+          <td><%= teacher.birthday %></td>
+          <td>
+            <%= link_to department_teacher_path(id: teacher.id), class: 'btn btn-secondary' do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            <%= link_to department_teacher_path(id: teacher.id),  method: :delete, data: { confirm: "Really ?  " + teacher.full_name }, class: 'btn btn-danger' do %>
+              <i class="fas fa-trash"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
