@@ -17,7 +17,7 @@
   <body>
     <% if user_signed_in? %>
       <div class="row">
-        <div class="col-2 side_bar vh-100">
+        <div class="col-2 side_bar mh-100">
           <% if current_user.role == 'education' %>
             <%= render 'layouts/side_bar_education' %>
           <% else %>
@@ -25,20 +25,20 @@
           <% end %>
         </div>
 
-        <div class="col-10">
+        <div class="col-10" style="padding-left: 0; padding-right: 0">
           <%= render 'layouts/header' %>
-          <div class="main p-5">
+          <% flash.each do |type, msg| %>
+            <div class="alert alert-info">
+              <%= msg %>
+            </div>
+          <% end %>
+          <div class="main p-5 min-vh-100">
             <%= yield %>
           </div>
         </div>
       </div>
     <% else %>
       <%= yield %>
-    <% end %>
-    <% flash.each do |type, msg| %>
-      <div class="alert alert-info">
-        <%= msg %>
-      </div>
     <% end %>
   </body>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

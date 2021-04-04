@@ -1,1 +1,48 @@
+<div class="row min-vh-100">
+  <div class="col-3"></div>
+  <%= form_for [:department, @teacher], html: {class: "col-6 pl-5 pr-5 bg-center pt-5"} do |f| %>
+    <div class="form-group">
+      <label>Tạo tài khoản:</label>
+      <%= f.fields_for :user do |ff| %>
+        <div class="form-group ml-5">
+          <label>Email</label>
+          <%= ff.text_field :email, class: "form-control", required: true %>
+        </div>
+        <div class="form-group ml-5">
+          <label>Mật khẩu</label>
+          <%= ff.text_field :password, class: "form-control", required: true %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <label> Thuộc bộ môn</label>
+      <%= f.select :department_id, Department.pluck(:name, :id), {include_blank: "-- Chọn bộ môn --"}, required: true, class: "form-control"%>
+    </div>
+    <div class="form-group">
+      <label>Họ tên</label>
+      <%= f.text_field :full_name, class: "form-control", required: true %>
+    </div>
 
+    <div class="form-group">
+      <label>Giới tính</label>
+      <%= f.select :gender, [['Nam'], ['Nữ']], { }, class: "form-control", required: true %>
+    </div>
+    <div class="form-group">
+      <label>Địa chỉ</label>
+      <%= f.text_field :address, class: "form-control", required: true %>
+    </div>
+    <div class="form-group">
+      <label>Ngày sinh</label>
+      <%= f.date_field :birthday, class: "form-control", required: true %>
+    </div>
+    <div class="form-group">
+      <label>Trình độ học vấn</label>
+      <%= f.select :academic_levels, ACADEMIC_LEVELS, {include_blank: "-- Chọn trình độ học vấn --"}, class: "form-control", required: true %>
+    </div>
+    <div class="form-group d-flex flex-row-reverse mt-5">
+      <%= f.submit "Lưu", class: 'btn btn-primary pl-5 pr-5 ml-3' %>
+      <button type="button" class="btn btn-danger  pl-5 pr-5" data-dismiss="modal">Hủy</button>
+    </div>
+  <% end %>
+  <div class="col-3"></div>
+</div>

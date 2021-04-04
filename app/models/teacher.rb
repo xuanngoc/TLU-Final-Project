@@ -1,18 +1,20 @@
 class Teacher < ApplicationRecord
-  after_create :generate_code
+  before_save :generate_code
 
   belongs_to :department
-  belongs_to :user
+  belongs_to :user, optional: true
 
   enum gender: {
     'Nam' => true,
-    'Nu' => false
+    'Nữ' => false
   }
+
+  accepts_nested_attributes_for :department
 
   private
 
   def generate_code
-    code = self.department.code + self.id.to_s
+    self.code = self.department.code + self.id.to_s
   end
 
 end
