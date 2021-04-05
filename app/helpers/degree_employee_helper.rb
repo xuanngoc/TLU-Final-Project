@@ -1,0 +1,2 @@
+module DegreeEmployeeHelper
+end

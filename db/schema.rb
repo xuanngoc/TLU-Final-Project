@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_145109) do
   end
 
   create_table "costs", force: :cascade do |t|
-    t.string "type"
+    t.string "cost_type"
     t.string "amount"
     t.bigint "business_trips_id"
     t.datetime "at"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_145109) do
   end
 
   create_table "degree_employees", force: :cascade do |t|
-    t.string "type"
+    t.string "degree_type"
     t.string "name"
   end
 

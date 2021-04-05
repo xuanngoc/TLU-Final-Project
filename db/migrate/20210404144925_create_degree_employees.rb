@@ -1,7 +1,7 @@
 class CreateDegreeEmployees < ActiveRecord::Migration[6.1]
   def up
     create_table :degree_employees do |t|
-      t.string :type
+      t.string :degree_type
       t.string :name
     end
   end

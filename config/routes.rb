@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     resources :teachers
   end
 
+  resources :degree_employees
+
 end
