@@ -1,0 +1,2 @@
+class LimitCost < ApplicationRecord
+end

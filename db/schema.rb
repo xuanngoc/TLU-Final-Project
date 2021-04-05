@@ -10,16 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_040622) do
+ActiveRecord::Schema.define(version: 2021_04_04_145109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "business_trips", force: :cascade do |t|
+    t.bigint "teacher_id"
+    t.string "destination"
+    t.date "from_date"
+    t.date "to_date"
+    t.integer "purpose"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["teacher_id"], name: "index_business_trips_on_teacher_id"
+  end
+
+  create_table "costs", force: :cascade do |t|
+    t.string "type"
+    t.string "amount"
+    t.bigint "business_trips_id"
+    t.datetime "at"
+    t.index ["business_trips_id"], name: "index_costs_on_business_trips_id"
+  end
+
+  create_table "degree_employees", force: :cascade do |t|
+    t.string "type"
+    t.string "name"
+  end
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
     t.string "code"
     t.bigint "teacher_id"
     t.index ["teacher_id"], name: "index_departments_on_teacher_id"
+  end
+
+  create_table "limit_costs", force: :cascade do |t|
+    t.bigint "degree_employees_id"
+    t.integer "limit"
+    t.integer "cost_type"
+    t.index ["degree_employees_id"], name: "index_limit_costs_on_degree_employees_id"
   end
 
   create_table "teachers", force: :cascade do |t|
