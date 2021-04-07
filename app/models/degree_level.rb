@@ -2,8 +2,11 @@ class DegreeLevel < ApplicationRecord
   after_create :generate_limit_cost
 
 
-  belongs_to :department
+  belongs_to :department, class_name: "department", foreign_key: "department_id"
+
   has_many :limit_costs
+
+  has_many :users
 
 
   private

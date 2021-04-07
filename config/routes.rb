@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   }
 
   resources :departments do
-    resources :teachers
+    resources :personnel
   end
 
   resources :degree_levels
