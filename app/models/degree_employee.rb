@@ -1,2 +1,0 @@
-class DegreeEmployee < ApplicationRecord
-end

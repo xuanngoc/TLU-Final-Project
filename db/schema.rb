@@ -10,61 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_145109) do
+ActiveRecord::Schema.define(version: 2021_04_07_060933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "business_trips", force: :cascade do |t|
-    t.bigint "teacher_id"
-    t.string "destination"
-    t.date "from_date"
-    t.date "to_date"
-    t.integer "purpose"
-    t.integer "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["teacher_id"], name: "index_business_trips_on_teacher_id"
-  end
-
-  create_table "costs", force: :cascade do |t|
-    t.string "type"
-    t.string "amount"
-    t.bigint "business_trips_id"
-    t.datetime "at"
-    t.index ["business_trips_id"], name: "index_costs_on_business_trips_id"
-  end
-
-  create_table "degree_employees", force: :cascade do |t|
-    t.string "type"
+  create_table "cost_types", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "degree_levels", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "department_id"
+    t.index ["department_id"], name: "index_degree_levels_on_department_id"
   end
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
     t.string "code"
-    t.bigint "teacher_id"
-    t.index ["teacher_id"], name: "index_departments_on_teacher_id"
   end
 
   create_table "limit_costs", force: :cascade do |t|
-    t.bigint "degree_employees_id"
+    t.bigint "degree_level_id"
+    t.bigint "cost_type_id"
     t.integer "limit"
-    t.integer "cost_type"
-    t.index ["degree_employees_id"], name: "index_limit_costs_on_degree_employees_id"
-  end
-
-  create_table "teachers", force: :cascade do |t|
-    t.string "full_name"
-    t.string "address"
-    t.boolean "gender"
-    t.date "birthday"
-    t.integer "academic_levels"
-    t.bigint "user_id"
-    t.bigint "department_id"
-    t.string "code"
-    t.index ["department_id"], name: "index_teachers_on_department_id"
-    t.index ["user_id"], name: "index_teachers_on_user_id"
+    t.index ["cost_type_id"], name: "index_limit_costs_on_cost_type_id"
+    t.index ["degree_level_id"], name: "index_limit_costs_on_degree_level_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,10 +48,12 @@ ActiveRecord::Schema.define(version: 2021_04_04_145109) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role"
-    t.bigint "teacher_id"
+    t.string "full_name"
+    t.boolean "gender"
+    t.string "address"
+    t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["teacher_id"], name: "index_users_on_teacher_id"
   end
 
 end

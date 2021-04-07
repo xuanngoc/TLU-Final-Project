@@ -10,7 +10,7 @@ jQuery(function(){
     modal.find('.modal-body .code input').val(code)
     modal.find('.modal-body .name input').val(name)
 
-    modal.find('.modal-body form').attr('action', '/department/' + id);
+    modal.find('.modal-body form').attr('action', '/departments/' + id);
 
   })
 
@@ -23,7 +23,7 @@ jQuery(function(){
     var modal = $(this)
     modal.find('.modal-tile').val(name)
 
-    modal.find('.modal-body form').attr('action', '/department/' + id);
+    modal.find('.modal-body form').attr('action', '/departments/' + id);
 
   })
 });

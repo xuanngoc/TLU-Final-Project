@@ -1,11 +1,11 @@
 <div class="modal-body">
-  <%= form_for :department do |f| %>
-    <div class="code form-group">
-      <label>Mã bộ phận</label>
-      <%= f.text_field :code, class: "form-control" %><br />
+  <%= form_for :degree_employee, method: :put do |f| %>
+    <div class="degree_type form-group">
+      <label>Bộ phận</label>
+      <%= f.select :degree_type, [['Giaos ducj', 'education'], ['Dieu hanh', 'operation']], { }, class: "form-control" %><br />
     </div>
     <div class="name form-group">
-      <label>Tên bộ phận</label>
+      <label>Tên cấp bậc</label>
       <%= f.text_field :name, class: "form-control" %><br />
     </div>
 

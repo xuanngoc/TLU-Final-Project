@@ -1,0 +1,12 @@
+<div class="modal-body">
+  <%= form_for :limit_cost, method: :put, url: :limit_costs_update_multiple do |f| %>
+    <h5 id="department-name" class="text-center text-secondary"></h5>
+    <h5 id="degree-name" class="text-center text-secondary"></h5>
+    <p class="name"></p>
+    <div class="d-flex flex-row-reverse mt-5">
+      <%= f.submit "Lưu", class: 'btn btn-primary pl-4 pr-4 ml-3' %>
+      <button type="button" class="btn btn-danger  pl-4 pr-4" data-dismiss="modal">Hủy</button>
+    </div>
+  <% end %>
+</div>
+
