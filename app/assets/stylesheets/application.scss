@@ -19,6 +19,10 @@
 
 // @import "users";
 
+.hidden {
+  display: none;
+}
+
 .btn-primary {
   background-color: #2f343f !important;
   border-color: #f5f6fa !important;
@@ -43,6 +47,10 @@
 
 .bg-center {
   background-color: #c7ecee !important;
+}
+
+.text-secondary{
+  color: #44bd32 !important;
 }
 
 .side_bar {

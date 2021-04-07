@@ -18,7 +18,7 @@ class DepartmentsController < ApplicationController
     else
       flash[:alert] = 'Create failed'
     end
-    redirect_to department_index_path
+    redirect_to departments_path
   end
 
   def edit
@@ -30,12 +30,12 @@ class DepartmentsController < ApplicationController
     else
       flash[:alert] = 'Update failed'
     end
-    redirect_to department_index_path
+    redirect_to departments_path
   end
 
   def destroy
     @department.delete
-    redirect_to department_index_path
+    redirect_to departments_path
   end
 
   private
