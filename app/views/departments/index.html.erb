@@ -53,7 +53,7 @@
           <th scope="row"><%= index + 1 %></th>
           <td><%= department.code %></td>
           <td>
-            <%= link_to department_teachers_path(department_id: department.id)  do %>
+            <%= link_to department_personnels_path(department_id: department.id)  do %>
               <%= department.name %>
             <% end %>
           </td>

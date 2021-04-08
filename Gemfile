@@ -20,6 +20,9 @@ gem 'devise'
 
 gem 'blueprinter'
 
+gem "pygments.rb", "~> 0.6.3"
+gem "redcarpet", "~> 3.3", ">= 3.3.4"
+gem "simplemde-rails"
 
 
 # Use Active Storage variant

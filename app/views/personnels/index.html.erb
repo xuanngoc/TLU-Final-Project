@@ -1,0 +1,82 @@
+<div class="modal fade" id="createModalPersonnel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm nhân viên</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'new' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editModalPersonnel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm nhân viên</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'edit' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% @degrees.each do |key, personnels| %>
+  <h5 class="mt-5"> ★ Danh sách nhân viên cấp bậc <%= key.name %> </h5>
+  <div class="row">
+    <div class="col-10"></div>
+    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createModalPersonnel" data-id="<%= key.id %>" data-name="<%= key.name %>" data-department="<%= key.department.name %>">
+      Thêm nhân viên
+    </button>
+  </div>
+  <div>
+    <% if personnels.empty? %>
+      <p class="text-danger text-center">Hiện chưa có nhân viên bộ phận này</p>
+    <% else %>
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Họ tên</th>
+          <th scope="col">Email</th>
+          <th scope="col">Giới tính</th>
+          <th scope="col">Ngày sinh</th>
+
+          <th scope="col">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% personnels.each_with_index do |personnel, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= personnel.full_name %></td>
+            <td><%= personnel.email %></td>
+            <td><%= personnel.gender %></td>
+            <td><%= personnel.birthday %></td>
+
+            <td>
+              <button type="button" class="btn btn-secondary"
+                    data-toggle="modal" data-target="#editModalPersonnel"
+                    data-id="<%= personnel.id %>" data-name="<%= personnel.email %>">
+                  <i class="fas fa-edit"></i>
+              </button>
+              <%= link_to department_personnel_path(id: personnel.id),  method: :delete, data: { confirm: "Really ?  " + personnel.email }, class: 'btn btn-danger' do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
+  </div>
+<% end %>
