@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   }
 
   resources :departments do
-    resources :personnel
+    resources :personnels
   end
 
   resources :degree_levels
@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :business_trips
 
   put 'limit_costs/update_multiple', to: 'limit_costs#update_multiple'
 end

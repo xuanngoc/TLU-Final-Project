@@ -11,7 +11,7 @@ import "channels"
 import "../stylesheets/application"
 // import "bootstrap"
 
-
+// import "vendor/assets/javascripts/simplemde.min"
 
 Rails.start()
 Turbolinks.start()

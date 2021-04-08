@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6 border border-primary p-5">
+    <h4 class="text-center">Chi tiết thông tin chuyến công tác</h4>
+    <div class=" form-group">
+      <label>Điểm đến:</label>
+      <label><%= @business_trip.destination %></label>
+    </div>
+
+    <div class=" form-group">
+      <label>Từ ngày:</label>
+      <label><%= @business_trip.from_date %></label>
+    </div>
+
+    <div class=" form-group">
+      <label>Đến ngày:</label>
+      <label><%= @business_trip.to_date %></label>
+    </div>
+
+    <div class=" form-group">
+      <label>Quyết định số:</label>
+      <label><%= @business_trip.decision_writing %></label>
+    </div>
+
+    <div class=" form-group">
+      <label>Mục đích chuyến công tác:</label><br>
+      <div class="markdown">
+        <%= markdown @business_trip.purpose %>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row-reverse mt-5">
+      <%= link_to edit_business_trip_path(id: @business_trip.id), class: 'btn btn-secondary' do %>
+        Sua thong tin
+      <% end %>
+    </div>
+  </div>
+  <div class="col-3"></div>
+</div>
+

@@ -1,0 +1,2 @@
+class BusinessTrip < ApplicationRecord
+end

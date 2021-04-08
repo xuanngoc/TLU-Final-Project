@@ -4,8 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum role: [ :admin, :education, :accountting, :teacher, :headmaster ]
+  enum role: [ :admin, :education, :accountting, :personnel, :headmaster ]
 
-  has_one :teacher
+  enum gender: {
+    'Nam': true,
+    'Nữ': false
+  }
+
+
 
 end
