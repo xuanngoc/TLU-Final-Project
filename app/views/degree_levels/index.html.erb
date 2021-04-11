@@ -22,7 +22,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Thêm cấp bậc</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Sửa cấp bậc</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -60,7 +60,7 @@
             <th scope="row"><%= index + 1 %></th>
             <td><%= d.name %></td>
             <td>
-              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editModalDegree" data-id="<%= d.id %>" data-name="<%= d.name %>"><i class="fas fa-edit"></i></button>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editModalDegree" data-id="<%= d.id %>" data-name="<%= d.name %>" data-degree-name="<%= key.name %>"><i class="fas fa-edit"></i></button>
               <%= link_to d,  method: :delete, data: { confirm: "Really ?  " + d.name }, class: 'btn btn-danger' do %>
                 <i class="fas fa-trash"></i>
               <% end %>

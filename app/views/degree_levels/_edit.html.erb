@@ -1,9 +1,7 @@
 <div class="modal-body">
   <%= form_for :degree_employee, method: :put do |f| %>
-    <div class="degree_type form-group">
-      <label>Bộ phận</label>
-      <%= f.select :degree_type, [['Giaos ducj', 'education'], ['Dieu hanh', 'operation']], { }, class: "form-control" %><br />
-    </div>
+    <h5 id="degree-name" class="text-center text-secondary"></h5>
+
     <div class="name form-group">
       <label>Tên cấp bậc</label>
       <%= f.text_field :name, class: "form-control" %><br />

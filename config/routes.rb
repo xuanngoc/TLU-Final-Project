@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   resources :business_trips
 
   put 'limit_costs/update_multiple', to: 'limit_costs#update_multiple'
+  get 'api/v1/personnels', to: 'personnels#search_personnel'
 end

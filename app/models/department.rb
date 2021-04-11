@@ -1,5 +1,5 @@
 class Department < ApplicationRecord
 
-  has_many :degree_levels
+  has_many :degree_levels, dependent: :destroy
 
 end

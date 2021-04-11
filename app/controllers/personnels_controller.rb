@@ -23,6 +23,12 @@ class PersonnelsController < ApplicationController
     redirect_to department_personnels_path
   end
 
+  def search_personnel
+    name = params[:name]
+    personnels = User.searchByName(name)
+    render json: UserBlueprint.render(personnels, view: :normal), status: :ok
+  end
+
   private
 
   def personnel_params

@@ -30,6 +30,13 @@
   </div>
 </div>
 
+<% if @degrees.empty? %>
+  <h4 class="text-center text-danger">Hiện chưa có cấp bậc và giáo viên nào thuộc bộ phận này</h4>
+  <div class="w-100 text-center">
+    <%= link_to "Tạo cấp bậc", degree_levels_path, class: "btn btn-primary m-5 pl-5 pr-5 pt-3 pb-3" %>
+  </div>
+
+<% end %>
 <% @degrees.each do |key, personnels| %>
   <h5 class="mt-5"> ★ Danh sách nhân viên cấp bậc <%= key.name %> </h5>
   <div class="row">

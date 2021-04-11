@@ -5,22 +5,46 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create!(email: 'admin@thanglong.edu.vn', password: '123123', role: :admin, full_name: 'just admin')
 
-# Initialize first account:
-first_user = User.create! do |u|
-  u.email     = 'abc@test.com'
-  u.password    = '123123'
-  u.role = 'admin'
+Department.create(name: 'Bộ phận tài vụ', code: 'MMA')
+Department.create(name: 'Bộ phận hành chính', code: 'MMC')
+Department.create(name: 'Bộ phận đào tạo', code: 'MME')
+
+
+Department.all.each do |department|
+  5.times do |time|
+    DegreeLevel.create(name: 'Bậc ' + time.to_s, department: department)
+  end
 end
 
-Department.create(code: 'CTI', name: 'Bo phan Tin hoc')
+DegreeLevel.all.each do |degree|
+  5.times do
+    User.create(
+      email: Faker::Internet.email(domain: 'thanglong.edu.vn'),
+      password: '123123',
+      role: :personnel,
+      full_name: Faker::Name.name,
+      gender: false,
+      address: Faker::Address.full_address,
+      birthday: Faker::Date.birthday(min_age: 18, max_age: 65),
+      degree_level_id: degree.id
+    )
+  end
 
-(1..5).each do |i|
-  DegreeLevel.create(name: 'Bac ' + i.to_s, department_id: 1)
 end
 
-CostType.create(name: 'An uong')
-CostType.create(name: 'Di chuyen')
-CostType.create(name: 'Khach san')
+CostType.create(name: 'Ăn uống')
+CostType.create(name: 'Di chuyển')
+CostType.create(name: 'Khách sạn')
 
-# Teacher.create(full_name: 'Bui Xuan Ngoc', gender: true, department_id: Department.first, user_id: first_user.id)
+
+# CostType.all.each do |cost_type|
+#   DegreeLevel.all.each do |degree|
+#     LimitCost.create(degree_level_id: degree.id, cost_type_id: cost_type.id, limit: Faker::Number.within(range: 300_000..10_000_000) )
+#   end
+# end
+
+LimitCost.all.each do |limit|
+  LimitCost.find(limit.id).update(limit: Faker::Number.within(range: 300_000..10_000_000))
+end
