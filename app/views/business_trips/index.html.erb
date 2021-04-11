@@ -10,8 +10,11 @@
     <thead>
       <tr>
         <th scope="col">STT</th>
-        <th scope="col">Mã</th>
-        <th scope="col">Tên bộ phận</th>
+        <th scope="col">Địểm đến</th>
+        <th scope="col">Quyết định số</th>
+        <th scope="col">Từ ngày</th>
+        <th scope="col">Đến ngày</th>
+
         <th scope="col">Hành động</th>
       </tr>
     </thead>
@@ -19,12 +22,15 @@
       <% @business_trips.each_with_index do |business_trip, index| %>
         <tr>
           <th scope="row"><%= index + 1 %></th>
-          <td><%= business_trip.destination %></td>
           <td>
             <%= link_to business_trip_path(id: business_trip.id)  do %>
               <%= business_trip.destination %>
             <% end %>
           </td>
+          <td><%= business_trip.decision_writing %></td>
+          <td><%= business_trip.from_date.strftime("%d-%m-%Y") %></td>
+          <td><%= business_trip.to_date.strftime("%d-%m-%Y") %></td>
+
           <td>
              <%= link_to edit_business_trip_path(id: business_trip.id), class: 'btn btn-secondary' do %>
               <i class="fas fa-edit"></i>
