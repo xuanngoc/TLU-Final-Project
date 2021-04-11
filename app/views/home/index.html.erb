@@ -1,8 +1,20 @@
-<div class="content-header">
-    <div class="left">
-
+<div class="row" style="height: 100px; background-color: #fbc531">
+    <div class="col-3 h-100">
+        <%= image_tag "LogoTLU.jpg", class: "h-100" %>
     </div>
-    <div class="right">
-
+    <div class="col-6">
+        <nav class="d-flex justify-content-center align-items-center h-100">
+            <%= link_to('Home', business_trips_path, class: "btn ml-5 mr-5 active", style: "color: #f5f6fa") %>
+            <%= link_to('Features', business_trips_path, class: "btn ml-5 mr-5") %>
+            <%= link_to('More services', business_trips_path, class: "btn ml-5 mr-5") %>
+            <%= link_to('About me', business_trips_path, class: "btn ") %>
+        </nav>
     </div>
+    <div class="col-3 d-flex justify-content-center align-items-center h-100">
+        <%= link_to('Dành cho nhân viên', business_trips_path, class: "btn ") %>
+    </div>
+</div>
+
+<div class="min-vh-100" style="background: #f5f6fa">
+
 </div>
