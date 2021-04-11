@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :business_trips
+  resources :request_payments
 
   put 'limit_costs/update_multiple', to: 'limit_costs#update_multiple'
   get 'api/v1/personnels', to: 'personnels#search_personnel'
