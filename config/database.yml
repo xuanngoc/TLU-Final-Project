@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: business_trip_production
-  username: business_trip
-  password: <%= ENV['BUSINESS_TRIP_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE'] %>
+  username: <%= ENV['USER'] %>
+  password: <%= ENV['PASSWORD'] %>
