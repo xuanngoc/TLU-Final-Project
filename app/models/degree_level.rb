@@ -6,7 +6,7 @@ class DegreeLevel < ApplicationRecord
 
   has_many :limit_costs
 
-  has_many :users
+  has_many :users, dependent: :destroy
 
   private
 

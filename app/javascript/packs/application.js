@@ -10,12 +10,9 @@ import "channels"
 
 import "../stylesheets/application"
 // import "bootstrap"
+require("controllers")
 
-// import "vendor/assets/javascripts/simplemde.min"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-global.toastr = require("toastr")
-

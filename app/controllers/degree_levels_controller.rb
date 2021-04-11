@@ -1,6 +1,6 @@
 class DegreeLevelsController < ApplicationController
 
-  before_action :find_degree, only: [:edit, :update, :show, :destory]
+  before_action :find_degree, only: [:edit, :update, :show, :destroy]
 
   def index
     @degrees = {}
@@ -39,6 +39,12 @@ class DegreeLevelsController < ApplicationController
 
 
   def destroy
+    if @degree.destroy
+      flash[:notice] = 'Delete successful'
+    else
+      flash[:alert] = 'Delete failed'
+    end
+    redirect_to degree_levels_path
   end
 
   private

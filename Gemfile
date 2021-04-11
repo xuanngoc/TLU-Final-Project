@@ -19,11 +19,7 @@ gem 'turbolinks', '~> 5'
 gem 'devise'
 
 gem 'blueprinter'
-
-gem "pygments.rb", "~> 0.6.3"
-gem "redcarpet", "~> 3.3", ">= 3.3.4"
-gem "simplemde-rails"
-
+gem 'faker'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

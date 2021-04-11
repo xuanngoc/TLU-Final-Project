@@ -25,9 +25,9 @@
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Tên cấp bậc</th>
-          <th scope="col">Han muc</th>
+          <th scope="col">Hạn mức</th>
 
-          <th scope="col">Thiet lap</th>
+          <th scope="col">Thiết lập</th>
         </tr>
       </thead>
       <tbody>
@@ -35,10 +35,10 @@
           <tr>
             <th scope="row"><%= index + 1 %></th>
             <td><%= d.name %></td>
-            <td class="text-right">
-              <ul>
+            <td >
+              <ul class="limit-cost">
                 <% d.limit_costs.each do |limit| %>
-                  <li><%= limit.cost_type.name %> : <%= limit.limit %></li>
+                  <li ><%= limit.cost_type.name %> : <%= limit.limit %></li>
                 <% end %>
               </ul>
             </td>

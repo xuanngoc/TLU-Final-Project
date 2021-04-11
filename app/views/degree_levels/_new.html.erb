@@ -7,7 +7,7 @@
     </div>
     <div class="form-group hidden">
       <label> Thuộc bộ phận</label>
-      <%= f.select :department_id, Department.pluck(:name, :id), {include_blank: "-- Chọn bộ môn --"}, required: true, class: "form-control select"%>
+      <%= f.select :department_id, Department.pluck(:name, :id), {include_blank: "-- Chọn bộ phận --"}, required: true, class: "form-control select"%>
     </div>
 
     <div class="d-flex flex-row-reverse mt-5">
