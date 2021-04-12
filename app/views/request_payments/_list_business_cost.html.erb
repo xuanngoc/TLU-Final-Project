@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <h4 class="text-center">Danh sách chi phí</h4>
+
+    <% @request_payment.business_trip_costs.each_with_index do |cost, index| %>
+      <% if cost.receipt_type == "EReceipt" %>
+        <div class="ml-5 mr-5">
+          <h6 class="font-weight-bold" style="text-decoration: underline;">➢ Thông tin hóa đơn số <%= index + 1 %></h6>
+          <div class="ml-2 row">
+            <div class=" ml-3">
+              <label class="font-weight-bold">Loại chi phí:</label>
+              <span><%= cost.cost_type.name%></span>
+            </div>
+          </div>
+          <div class="ml-2 row">
+            <div class="col-6 ">
+              <label class="font-weight-bold">Mã số thuế người bán:</label>
+              <span><%= cost.receipt.tax_number%></span>
+            </div>
+            <div class="col-6 ">
+              <label class="font-weight-bold">Mẫu số:</label>
+              <span ><%= cost.receipt.template_number%></span>
+            </div>
+          </div>
+          <div class="ml-2 row">
+            <div class="col-6 ">
+              <label class="font-weight-bold">Ký hiệu hóa đơn:</label>
+              <span ><%= cost.receipt.symbols%></span>
+            </div>
+            <div class="col-6 ">
+              <label class="font-weight-bold">Số hóa đơn:</label>
+              <span ><%= cost.receipt.receipt_number%></span>
+            </div>
+          </div>
+        </div>
+      <% else %>
+
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-2"></div>
+</div>
+

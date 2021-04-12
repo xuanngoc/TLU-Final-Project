@@ -40,8 +40,17 @@
     </div>
 
     <div class="d-flex flex-row-reverse mt-5">
-      <%= link_to edit_business_trip_path(id: @business_trip.id), class: 'btn btn-secondary' do %>
+      <%= link_to edit_business_trip_path(id: @business_trip.id), class: 'btn btn-secondary ml-5' do %>
         Sửa thông tin
+      <% end %>
+      <% if exist_payment_request?(@business_trip.id) %>
+        <%= link_to new_business_trip_request_payment_path(business_trip_id: @business_trip.id), class: 'btn btn-primary' do %>
+          Tạo yêu cầu thanh toán chi phí
+        <% end %>
+      <% else%>
+        <%= link_to business_trip_request_payments_path(business_trip_id: @business_trip.id), class: 'btn btn-primary' do %>
+          Xem yeu caauf thanh toan
+        <% end %>
       <% end %>
     </div>
   </div>

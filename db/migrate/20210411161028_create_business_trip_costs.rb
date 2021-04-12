@@ -2,7 +2,7 @@ class CreateBusinessTripCosts < ActiveRecord::Migration[6.1]
   def up
     create_table :business_trip_costs do |t|
       t.references :cost_type
-      t.references :payment_request
+      t.references :request_payment
 
       # Polymorphic Association
       t.integer :receipt_id

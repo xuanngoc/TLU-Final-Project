@@ -33,6 +33,12 @@ class CostTypesController < ApplicationController
     redirect_to cost_types_path
   end
 
+
+  def api_index
+    cost_types = CostType.all
+    render json: CostTypeBlueprint.render(cost_types)
+  end
+
   private
 
   def cost_type_params

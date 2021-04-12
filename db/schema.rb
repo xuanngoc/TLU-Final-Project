@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_161028) do
+ActiveRecord::Schema.define(version: 2021_04_13_190306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "business_trip_costs", force: :cascade do |t|
     t.bigint "cost_type_id"
-    t.bigint "payment_request_id"
+    t.bigint "request_payment_id"
     t.integer "receipt_id"
     t.string "receipt_type"
     t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cost_type_id"], name: "index_business_trip_costs_on_cost_type_id"
-    t.index ["payment_request_id"], name: "index_business_trip_costs_on_payment_request_id"
+    t.index ["request_payment_id"], name: "index_business_trip_costs_on_request_payment_id"
   end
 
   create_table "business_trip_users", force: :cascade do |t|
@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 2021_04_11_161028) do
 
   create_table "e_receipts", force: :cascade do |t|
     t.string "tax_number"
-    t.string "name_owner"
     t.string "template_number"
     t.string "symbols"
+    t.string "receipt_number"
     t.string "amount"
     t.bigint "business_trip_cost_id"
     t.datetime "created_at", precision: 6, null: false
@@ -88,10 +88,10 @@ ActiveRecord::Schema.define(version: 2021_04_11_161028) do
 
   create_table "request_payments", force: :cascade do |t|
     t.bigint "business_trip_id"
-    t.string "status"
     t.integer "total_amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status"
     t.index ["business_trip_id"], name: "index_request_payments_on_business_trip_id"
   end
 
