@@ -1,0 +1,21 @@
+
+<div>
+    <%= render 'business_trip_info' %>
+    <div class="row">
+      <div class="col-12 text-right text-danger mr-5">
+        <span>Trang thai: <%= @request_payment.status %></span>
+      </div>
+    </div>
+    <%= render 'list_business_cost' %>
+
+    <div class="d-flex flex-row-reverse mt-5">
+      <%= link_to edit_business_trip_path(id: @business_trip.id), class: 'btn btn-secondary ml-5' do %>
+        Sửa thông tin
+      <% end %>
+      <%= link_to business_trip_request_payments_path(business_trip_id: @business_trip.id), class: 'btn btn-primary' do %>
+        Xem yeu caauf thanh toan
+      <% end %>
+    </div>
+
+</div>
+
