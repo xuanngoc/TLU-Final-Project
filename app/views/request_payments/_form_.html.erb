@@ -1,6 +1,6 @@
 <div class="row" data-controller="request-payment-form">
   <div class="col-3"></div>
-  <%= form_for [@business_trip, @request_payment], :html => {:class => 'col-6'} do |f| %>
+  <%= form_for [@business_trip, @request_payment],  method: :patch, :html => {:class => 'col-6'} do |f| %>
     <h5>Danh sách chi phí</h5>
     <div class="dropdown mr-1 text-right">
       <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
