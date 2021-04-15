@@ -1,0 +1,37 @@
+<div >
+
+  <form class="mb-4">
+    <select class="btn border" name="status" onchange="this.form.submit()">
+      <option value="0" >Tat ca</option>
+      <option value="1" <%= params[:status] == "1" ? 'selected' : nil %>  >Đang đợi xác nhận từ bộ phận tài vụ</option>
+      <option value="2" <%= params[:status] == "2" ? 'selected' : nil %> >Đang đọi xác nhận từ trưởng bộ phận tài vụ</option>
+      <option value="3" <%= params[:status] == "3" ? 'selected' : nil %> >Không chấp thuận</option>
+      <option value="4" <%= params[:status] == "4" ? 'selected' : nil %> >Chấp thuận</option>
+    </select>
+  </form>
+
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Điểm đến</th>
+        <th scope="col">Trạng thái</th>
+        <th scope="col">Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @request_payments.each_with_index do |request, index| %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td><%= request.business_trip.destination %></td>
+          <td class="text-danger"><%= request.status %></td>
+          <td>
+            <%= link_to business_trip_request_payments_path(business_trip_id: request.business_trip.id), class: 'btn btn-primary' do %>
+              Xem chi tiết
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div>

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :request_payments
   end
 
+  get 'list_payment_request', to: 'request_payments#list_request_payment'
 
   put 'limit_costs/update_multiple', to: 'limit_costs#update_multiple'
   get 'api/v1/personnels', to: 'personnels#search_personnel'
