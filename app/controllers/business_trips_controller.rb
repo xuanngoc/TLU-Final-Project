@@ -37,6 +37,8 @@ class BusinessTripsController < ApplicationController
   end
 
   def destroy
+    @business_trip.destroy
+    redirect_to business_trips_path
   end
 
   private

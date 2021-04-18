@@ -21,14 +21,19 @@ export default class extends Controller {
     const param_id = randomstring.generate(7);
 
     const select_tag = `
-      <div class="ml-3 row form-group">
-        <label>Loại chi phí</label>
-        <select class=" col-12 form-control" name="e_receipt[][cost_type_id]">
-          ${this.generateOptionsCostType()}
-        </select>
+      <div class="ml-2 row ">
+        <div class="col-6 form-group">
+          <label>Loại chi phí</label>
+          <select class=" col-12 form-control" name="e_receipt[][cost_type_id]">
+            ${this.generateOptionsCostType()}
+          </select>
+        </div>
+        <div class="col-6 form-group">
+          <label>Tổng chi phí</label>
+          <input name="e_receipt[][amount]" class="form-control" required  />
+        </div>
       </div>
     `;
-
 
 
     const form_builder = `

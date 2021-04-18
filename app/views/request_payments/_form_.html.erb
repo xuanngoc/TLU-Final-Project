@@ -1,7 +1,7 @@
 <div class="row" data-controller="request-payment-form">
-  <div class="col-3"></div>
-  <%= form_for [@business_trip, @request_payment],  method: :patch, :html => {:class => 'col-6'} do |f| %>
-    <h5>Danh sách chi phí</h5>
+  <div class="col-2"></div>
+  <%= form_for [@business_trip, @request_payment],  method: :patch, :html => {:class => 'col-8'} do |f| %>
+    <h5 class="text-center">Danh sách chi phí</h5>
     <div class="dropdown mr-1 text-right">
       <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
         Thêm chi phí
@@ -17,17 +17,23 @@
             <% @request_payment.business_trip_costs.each do |cost| %>
                 <div class="ml-5 mr-5">
                   <h6 class="font-weight-bold">➢ Thông tin hóa đơn</h6>
-                  <div class="ml-3 row form-group">
-                    <label>Loại chi phí</label>
-                    <select class=" col-12 form-control" name="e_receipt[][cost_type_id]">
-                        <% CostType.all.each do |ct| %>
-                          <% if cost.cost_type_id == ct.id %>
-                            <option value="<%= ct.id %>" selected><%= ct.name %></option>
-                          <% else %>
-                            <option value="<%= ct.id %>"><%= ct.name %></option>
+                  <div class="ml-2 row">
+                    <div class="col-6 form-group">
+                      <label>Loại chi phí</label>
+                      <select class="col-12 form-control" name="e_receipt[][cost_type_id]">
+                          <% CostType.all.each do |ct| %>
+                            <% if cost.cost_type_id == ct.id %>
+                              <option value="<%= ct.id %>" selected><%= ct.name %></option>
+                            <% else %>
+                              <option value="<%= ct.id %>"><%= ct.name %></option>
+                            <% end %>
                           <% end %>
-                        <% end %>
-                    </select>
+                      </select>
+                    </div>
+                    <div class="col-6 form-group">
+                      <label>Tổng chi phí</label>
+                      <input name="e_receipt[][amount]" class="form-control" value="<%= cost.amount %>" required  />
+                    </div>
                   </div>
                   <div class="ml-2 row">
                     <div class="col-6 form-group">
@@ -61,6 +67,6 @@
       <button type="button" class="btn btn-danger  pl-4 pr-4" data-dismiss="modal">Hủy</button>
     </div>
   <% end %>
-  <div class="col-3"></div>
+  <div class="col-2"></div>
 </div>
 
