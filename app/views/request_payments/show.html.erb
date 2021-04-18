@@ -1,0 +1,25 @@
+<div>
+    <%= render 'business_trip_info' %>
+    <div class="row">
+      <div class=" offset-7 text-right text-danger mr-5 mt-3 mb-4">
+        <span>Trạng thái: <%= @request_payment.status %></span>
+      </div>
+    </div>
+    <%= render 'list_business_cost' %>
+
+    <div class="mt-5 row"">
+      <div class="offset-8">
+        <%= link_to '#', class: 'btn btn-secondary ml-5' do %>
+          Sửa thông tin
+        <% end %>
+
+        <% if @request_payment.new_record? %>
+          <%= link_to '#', class: 'btn btn-primary' do %>
+            Xem yêu cầu thanh toán
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+</div>
+

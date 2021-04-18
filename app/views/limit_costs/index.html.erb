@@ -25,7 +25,7 @@
         <tr>
           <th scope="col">STT</th>
           <th scope="col">Tên cấp bậc</th>
-          <th scope="col">Hạn mức</th>
+          <th scope="col">Hạn mức (VND/ ngày)</th>
 
           <th scope="col">Thiết lập</th>
         </tr>
@@ -33,16 +33,16 @@
       <tbody>
         <% degree.each_with_index do |d, index| %>
           <tr>
-            <th scope="row"><%= index + 1 %></th>
-            <td><%= d.name %></td>
-            <td >
-              <ul class="limit-cost">
+            <th class="align-middle" scope="row"><%= index + 1 %></th>
+            <td class="align-middle"><%= d.name %></td>
+            <td class="align-middle">
+              <ul class="limit-cost align-middle">
                 <% d.limit_costs.each do |limit| %>
                   <li ><%= limit.cost_type.name %> : <%= limit.limit %></li>
                 <% end %>
               </ul>
             </td>
-            <td>
+            <td class="align-middle">
               <button type="button" class="btn btn-secondary" data-toggle="modal"
                 data-target="#editModalLimit"
                 data-id="<%= d.id %>" data-name="<%= d.name %>" data-department="<%= key.name %>" >

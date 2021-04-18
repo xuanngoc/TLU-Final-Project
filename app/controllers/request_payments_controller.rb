@@ -1,10 +1,13 @@
 class RequestPaymentsController < ApplicationController
-  before_action :load_business_trip, only: [:index, :new, :create, :edit]
+  before_action :load_business_trip, only: [:index, :new, :create, :edit, :update]
   before_action :load_request_payment, only: [:edit, :update]
 
   def index
     @request_payment = @business_trip.request_payment
+  end
 
+  def show
+    @request_payment = RequestPayment.find(params[:id])
   end
 
   def list_request_payment
@@ -23,9 +26,14 @@ class RequestPaymentsController < ApplicationController
     @request_payment = RequestPayment.new(business_trip_id: @business_trip.id)
 
     if @request_payment.save
-      e_receipt_params.each do |key, receipt_params|
-        reciept = EReceipt.create(receipt_params.except(:cost_type_id))
-        BusinessTripCost.create(cost_type_id: receipt_params[:cost_type_id], receipt: reciept, request_payment_id: @request_payment.id)
+      e_receipt_params[:e_receipt].each do |receipt_params|
+        reciept = EReceipt.create(receipt_params.except(:cost_type_id, :amount))
+        BusinessTripCost.create(
+          cost_type_id: receipt_params[:cost_type_id],
+          receipt: reciept,
+          request_payment_id: @request_payment.id,
+          amount: receipt_params[:amount]
+        )
       end
     end
     redirect_to business_trip_request_payments_path
@@ -37,14 +45,24 @@ class RequestPaymentsController < ApplicationController
 
 
   def update
-    @request_payment.business_trip_costs.destroy_all
+    if !validate_limit
+      render 'edit'
+    else
 
-    e_receipt_params[:e_receipt].each do |receipt_params|
-      reciept = EReceipt.create(receipt_params.except(:cost_type_id))
-      BusinessTripCost.create(cost_type_id: receipt_params[:cost_type_id], receipt: reciept, request_payment_id: @request_payment.id)
+      @request_payment.business_trip_costs.destroy_all
+
+      e_receipt_params[:e_receipt].each do |receipt_params|
+        reciept = EReceipt.create(receipt_params.except(:cost_type_id, :amount))
+        BusinessTripCost.create(
+          cost_type_id: receipt_params[:cost_type_id],
+          receipt: reciept,
+          request_payment_id: @request_payment.id,
+          amount: receipt_params[:amount]
+        )
+      end
+
+      redirect_to business_trip_request_payments_path
     end
-
-    redirect_to business_trip_request_payments_path
   end
 
   private
@@ -59,6 +77,37 @@ class RequestPaymentsController < ApplicationController
 
   def e_receipt_params
     params.permit!
+  end
+
+  def validate_limit
+    limit_costs = {}
+    business_trips_limits = {}
+
+    CostType.all.each do |cost_type|
+      limit_costs[cost_type.id] = 0
+      business_trips_limits[cost_type.id] = 0
+    end
+
+    params[:e_receipt].each do |receipt_params|
+      limit_costs[receipt_params[:cost_type_id].to_i] += receipt_params[:amount].to_i
+    end
+
+    @business_trip.users.each do |personnel|
+      personnel.degree_level.limit_costs.each do |cost|
+        business_trips_limits[cost.cost_type_id] += cost.limit
+      end
+    end
+
+    limit_costs.each do |cost_id, limit|
+      if limit_costs[cost_id] > business_trips_limits[cost_id]
+        flash[:alert] = "Tổng chi phí #{CostType.find(cost_id).name} vượt quá giới hạn"
+      end
+    end
+
+    if(flash[:alert])
+      false
+    end
+    true
   end
 
 end

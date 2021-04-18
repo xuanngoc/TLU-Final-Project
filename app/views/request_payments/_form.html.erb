@@ -1,7 +1,7 @@
 <div class="row" data-controller="request-payment-form">
-  <div class="col-3"></div>
-  <%= form_for [@business_trip, @request_payment], :html => {:class => 'col-6'} do |f| %>
-    <h5>Danh sách chi phí</h5>
+  <div class="col-2"></div>
+  <%= form_for [@business_trip, @request_payment], :html => {:class => 'col-8'} do |f| %>
+    <h5 class="text-center">Danh sách chi phí</h5>
     <div class="dropdown mr-1 text-right">
       <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
         Thêm chi phí
@@ -52,7 +52,7 @@
               </div>
             <% end %>
         <% else %>
-            hehe
+
         <% end %>
     </div>
 
@@ -61,6 +61,6 @@
       <button type="button" class="btn btn-danger  pl-4 pr-4" data-dismiss="modal">Hủy</button>
     </div>
   <% end %>
-  <div class="col-3"></div>
+  <div class="col-2"></div>
 </div>
 
