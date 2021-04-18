@@ -48,7 +48,6 @@ class RequestPaymentsController < ApplicationController
     if !validate_limit
       render 'edit'
     else
-
       @request_payment.business_trip_costs.destroy_all
 
       e_receipt_params[:e_receipt].each do |receipt_params|
@@ -106,8 +105,9 @@ class RequestPaymentsController < ApplicationController
 
     if(flash[:alert])
       false
+    else
+      true
     end
-    true
   end
 
 end
