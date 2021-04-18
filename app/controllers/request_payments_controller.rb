@@ -4,7 +4,10 @@ class RequestPaymentsController < ApplicationController
 
   def index
     @request_payment = @business_trip.request_payment
+  end
 
+  def show
+    @request_payment = RequestPayment.find(params[:id])
   end
 
   def list_request_payment

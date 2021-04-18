@@ -4,26 +4,26 @@
     <h4 class="text-center">Chi tiết thông tin chuyến công tác</h4>
     <div class=" form-group">
       <label class="font-weight-bold">Điểm đến:</label>
-      <label><%= @business_trip.destination %></label>
+      <label><%= @request_payment.business_trip.destination %></label>
     </div>
 
     <div class="form-group row">
       <div class="col-6" style="padding-left: 0">
         <label class="font-weight-bold" >Từ ngày:</label>
-        <label><%= @business_trip.from_date %></label>
+        <label><%= @request_payment.business_trip.from_date %></label>
       </div>
       <div class="col-6" >
         <label class="font-weight-bold">Đến ngày:</label>
-        <label><%= @business_trip.to_date %></label>
+        <label><%= @request_payment.business_trip.to_date %></label>
       </div>
     </div>
     <div class=" form-group">
       <label class="font-weight-bold">Quyết định số:</label>
-      <label><%= @business_trip.decision_writing %></label>
+      <label><%= @request_payment.business_trip.decision_writing %></label>
     </div>
       <label class="font-weight-bold">Danh sách nhân viên tham gia</label><br>
       <ul class="d-flex flex-wrap">
-        <% @business_trip.users.each do |personnel| %>
+        <% @request_payment.business_trip.users.each do |personnel| %>
           <li class="w-50">
             <%= personnel.code %> - <%= personnel.full_name %>
           </li>
@@ -35,7 +35,7 @@
     <div class=" form-group">
       <label class="font-weight-bold">Mục đích chuyến công tác:</label><br>
       <div class="markdown">
-        <%= @business_trip.purpose %>
+        <%= @request_payment.business_trip.purpose %>
       </div>
     </div>
     <hr>

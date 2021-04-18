@@ -1,20 +1,18 @@
-<div class="header row">
+<div class="header row" style="font-size: 1.2em">
   <div class="col-10">
-    hihi
+
   </div>
-  <div class="col-2">
+  <div class="col-2 ">
     <% if user_signed_in? %>
-      <% if current_user.role == 'admin' or current_user.role == 'education'%>
-        <div class="">
-          <span> Hello,</span>
-          <span><%= current_user.role %></span>
-        </div>
-      <% else %>
-        <div class="">
+      <div class="d-flex align-items-end h-50">
+        <% if current_user.role == 'admin' or current_user.role == 'education'%>
+          <span class=""> Hello, </span>
+          <span class="" ><%= current_user.role %></span>
+        <% else %>
           <span> Hello, <strong><%= current_user.teacher.full_name %></strong> </span>
           <span><%= current_user.role %></span>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
       <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
     <% else %>
       <%= link_to('Login', new_user_session_path) %>

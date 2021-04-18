@@ -26,7 +26,7 @@
           <td><%= request.business_trip.destination %></td>
           <td class="text-danger"><%= request.status %></td>
           <td>
-            <%= link_to business_trip_request_payments_path(business_trip_id: request.business_trip.id), class: 'btn btn-primary' do %>
+            <%= link_to request_payment_path(request), class: 'btn btn-primary' do %>
               Xem chi tiết
             <% end %>
           </td>
