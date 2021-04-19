@@ -11,9 +11,8 @@
       <tr>
         <th scope="col">STT</th>
         <th scope="col">Địểm đến</th>
-        <th scope="col">Quyết định số</th>
-        <th scope="col">Từ ngày</th>
-        <th scope="col">Đến ngày</th>
+        <th scope="col">Thời gian</th>
+        <th scope="col">Trạng thái thanh toán</th>
 
         <th scope="col">Hành động</th>
       </tr>
@@ -27,16 +26,30 @@
               <%= business_trip.destination %>
             <% end %>
           </td>
-          <td><%= business_trip.decision_writing %></td>
-          <td><%= business_trip.from_date.strftime("%d-%m-%Y") %></td>
-          <td><%= business_trip.to_date.strftime("%d-%m-%Y") %></td>
+          <td><%= business_trip.to_date.strftime("%d/%m/%Y") %> - <%= business_trip.from_date.strftime("%d/%m/%Y") %></td>
+          <td>
+            <% if business_trip.request_payment %>
+              <%= business_trip.request_payment.status %>
+            <% else %>
+              Chưa tạo yêu cầu thanh toán
+            <% end %>
+          </td>
 
           <td>
-             <%= link_to edit_business_trip_path(id: business_trip.id), class: 'btn btn-secondary' do %>
-              <i class="fas fa-edit"></i>
-            <% end %>
-            <%= link_to business_trip,  method: :delete, data: { confirm: "Really ?  " + business_trip.destination }, class: 'btn btn-danger' do %>
-              <i class="fas fa-trash"></i>
+            <% if business_trip.request_payment  and business_trip.request_payment.status != 'Tạm bị từ chối'%>
+                <%= link_to edit_business_trip_path(id: business_trip.id), class: 'btn btn-secondary disabled' do %>
+                  <i class="fas fa-edit"></i>
+                <% end %>
+                <%= link_to business_trip,  method: :delete, data: { confirm: "Really ?  " + business_trip.destination }, class: 'btn btn-danger disabled' do %>
+                  <i class="fas fa-trash"></i>
+                <% end %>
+            <% else %>
+              <%= link_to edit_business_trip_path(id: business_trip.id), class: 'btn btn-secondary ' do %>
+                <i class="fas fa-edit"></i>
+              <% end %>
+              <%= link_to business_trip,  method: :delete, data: { confirm: "Really ?  " + business_trip.destination }, class: 'btn btn-danger' do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
             <% end %>
           </td>
         </tr>

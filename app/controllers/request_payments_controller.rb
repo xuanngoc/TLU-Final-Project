@@ -18,6 +18,20 @@ class RequestPaymentsController < ApplicationController
     end
   end
 
+  def approve
+    request_payment = RequestPayment.find(params[:request_payment_id])
+
+    case request_payment.status
+    when 'Đang đợi xác nhận từ bộ phận tài vụ'
+      request_payment.status = 2
+    when 'Đang đợi xác nhận từ trưởng bộ phận tài vụ'
+      request_payment.status = 4
+    end
+    request_payment.save
+
+    redirect_to list_payment_request_path
+  end
+
   def new
     @request_payment = RequestPayment.new
   end
@@ -59,6 +73,7 @@ class RequestPaymentsController < ApplicationController
           amount: receipt_params[:amount]
         )
       end
+      @request_payment.update(status: 1)
 
       redirect_to business_trip_request_payments_path
     end

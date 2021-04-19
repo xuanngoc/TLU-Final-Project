@@ -7,19 +7,54 @@
     </div>
     <%= render 'list_business_cost' %>
 
-    <div class="mt-5 row"">
-      <div class="offset-8">
-        <%= link_to '#', class: 'btn btn-secondary ml-5' do %>
-          Sửa thông tin
-        <% end %>
+    <div class=" mt-5 mb-5 row justify-content-center"">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <div class="row">
+          <% if @request_payment.status == 'Đang đợi xác nhận từ bộ phận tài vụ' or @request_payment.status == 'Đang đợi xác nhận từ trưởng bộ phận tài vụ' %>
+            <%= link_to request_payment_approve_path(@request_payment), method: :post,  class: 'btn btn-secondary col-5', style: "width: 200px" do %>
+              Đồng ý yêu cầu
+            <% end %>
 
-        <% if @request_payment.new_record? %>
-          <%= link_to '#', class: 'btn btn-primary' do %>
-            Xem yêu cầu thanh toán
+            <button type="button" class='btn btn-danger col-5' style= "width: 200px" data-toggle="modal" data-target="#exampleModal">
+              Từ chối
+            </button>
           <% end %>
-        <% end %>
+        </div>
+
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Lý do</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <%= form_for :reason_reject, url: reason_rejects_path do |f| %>
+              <input type="hidden" name="reason_reject[request_payment_id]" value="<%= @request_payment.id %>" />
+              <div class="form-group">
+                <label for="exampleInputEmail1">Lý do từ chối</label>
+                <textarea  class="form-control" rows="7" name='reason_reject[reason]'></textarea>
+                <small id="emailHelp" class="form-text text-muted"></small>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+              </div>
+            <% end %>
+          </div>
       </div>
     </div>
+
 
 </div>
 
