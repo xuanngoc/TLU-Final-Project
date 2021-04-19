@@ -27,11 +27,16 @@ Rails.application.routes.draw do
   end
 
   resources :business_trips
-  resources :request_payments
+  resources :request_payments do
+    post 'approve', to: 'request_payments#approve'
+  end
 
   resources :business_trips do
     resources :request_payments
   end
+
+  resources :reason_rejects, only: [:create]
+
 
   get 'list_payment_request', to: 'request_payments#list_request_payment'
 

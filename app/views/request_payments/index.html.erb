@@ -10,8 +10,10 @@
 
     <div class="mt-5 row"">
       <div class="offset-8">
-        <%= link_to edit_business_trip_request_payment_path(business_trip_id: @business_trip.id, id: @request_payment.id), class: 'btn btn-secondary ml-5' do %>
-          Sửa thông tin
+        <% if @request_payment.status == 'Tạm bị từ chối' or  @request_payment.status == 'Đang đợi xác nhận từ bộ phận tài vụ' %>
+          <%= link_to edit_business_trip_request_payment_path(business_trip_id: @business_trip.id, id: @request_payment.id), class: 'btn btn-secondary ml-5' do %>
+            Sửa thông tin
+          <% end %>
         <% end %>
 
         <% if @request_payment.new_record? %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_13_190306) do
+ActiveRecord::Schema.define(version: 2021_04_18_154559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,14 @@ ActiveRecord::Schema.define(version: 2021_04_13_190306) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["business_trip_cost_id"], name: "index_no_receipts_on_business_trip_cost_id"
+  end
+
+  create_table "reason_rejects", force: :cascade do |t|
+    t.bigint "request_payment_id"
+    t.text "reason"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["request_payment_id"], name: "index_reason_rejects_on_request_payment_id"
   end
 
   create_table "request_payments", force: :cascade do |t|
