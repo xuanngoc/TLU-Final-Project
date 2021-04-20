@@ -40,9 +40,16 @@
     </div>
 
     <div class="d-flex flex-row-reverse mt-5">
-      <%= link_to edit_business_trip_path(id: @business_trip.id), class: 'btn btn-secondary ml-5' do %>
-        Sửa thông tin
+      <% if @business_trip.users.index(current_user) or current_user.role == 'admin' %>
+        <% if @business_trip.request_payment %>
+          <% if @business_trip.request_payment.status == 'Tạm bị từ chối' or @business_trip.request_payment.status == 'Đang đợi xác nhận từ bộ phận tài vụ' %>
+            <%= link_to edit_business_trip_path(id: @business_trip.id), class: 'btn btn-secondary ml-5' do %>
+              Sửa thông tin
+            <% end %>
+          <% end %>
+        <% end %>
       <% end %>
+
       <% if exist_payment_request?(@business_trip.id) %>
         <%= link_to new_business_trip_request_payment_path(business_trip_id: @business_trip.id), class: 'btn btn-primary' do %>
           Tạo yêu cầu thanh toán chi phí

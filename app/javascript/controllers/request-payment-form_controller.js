@@ -30,7 +30,7 @@ export default class extends Controller {
         </div>
         <div class="col-6 form-group">
           <label>Tổng chi phí</label>
-          <input name="e_receipt[][amount]" class="form-control" required  />
+          <input type='number' name="e_receipt[][amount]" class="form-control" required  />
         </div>
       </div>
     `;
