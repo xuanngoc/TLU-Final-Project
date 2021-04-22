@@ -1,48 +1,66 @@
-<div class="row">
-  <div class="col-2"></div>
-  <div class="col-8">
+<div class="ml-5 mr-5">
+  <div class="">
     <h4 class="ml-2">➢ Danh sách chi phí</h4>
 
-    <% @request_payment.business_trip_costs.each_with_index do |cost, index| %>
-      <% if cost.receipt_type == "EReceipt" %>
-        <div class="ml-5 mr-5 mt-3">
-          <h6 class="font-weight-bold" style="text-decoration: underline;">➢ Thông tin hóa đơn số <%= index + 1 %></h6>
-          <div class="ml-2 row">
-            <div class="col-6">
-              <label class="font-weight-bold">Loại chi phí:</label>
-              <span><%= cost.cost_type.name%></span>
-            </div>
-            <div class="col-6">
-              <label class="font-weight-bold">Tổng chi phí:</label>
-              <span><%= cost.amount%></span>
-            </div>
-          </div>
-          <div class="ml-2 row">
-            <div class="col-6 ">
-              <label class="font-weight-bold">Mã số thuế người bán:</label>
-              <span><%= cost.receipt.tax_number%></span>
-            </div>
-            <div class="col-6 ">
-              <label class="font-weight-bold">Mẫu số:</label>
-              <span ><%= cost.receipt.template_number%></span>
-            </div>
-          </div>
-          <div class="ml-2 row">
-            <div class="col-6 ">
-              <label class="font-weight-bold">Ký hiệu hóa đơn:</label>
-              <span ><%= cost.receipt.symbols%></span>
-            </div>
-            <div class="col-6 ">
-              <label class="font-weight-bold">Số hóa đơn:</label>
-              <span ><%= cost.receipt.receipt_number%></span>
-            </div>
-          </div>
-        </div>
-      <% else %>
+    <table id="table-EReceipt" class="table w-100">
+      <caption style="caption-side: top">Danh sách chi phí có hóa đơn</caption>
+      <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Loại chi phí</th>
+          <th scope="col">Mã số thuế người bán</th>
+          <th scope="col">Ký hiệu hóa đơn</th>
+          <th scope="col">Mẫu số</th>
+          <th scope="col">Số hóa đơn</th>
+          <th scope="col" class="text-right pr-5">Chi phí</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @request_payment.business_trip_costs.each_with_index do |cost, index| %>
+          <% if cost.receipt_type == "EReceipt" %>
+            <tr>
+              <th scope='col'><%= index + 1 %></th>
+              <td class=" form-group " style="width: 15%;"><%= cost.cost_type.name %></td>
+              <td class=" form-group"><%= cost.receipt.tax_number %></td>
+              <td class=" form-group"><%= cost.receipt.template_number %></td>
+              <td class=" form-group"><%= cost.receipt.symbols %></td>
+              <td class=" form-group"><%= cost.receipt.receipt_number %></td>
+              <td class=" form-group pr-5" style="text-align: right"><%= cost.receipt.amount %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
 
-      <% end %>
-    <% end %>
+    <table id="table-NoReceipt" class="table w-100">
+      <caption style="caption-side: top">Danh sách chi phí không hóa đơn</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 5%;">STT</th>
+          <th scope="col">Loại chi phí</th>
+          <th scope="col" class="text-right pr-5">Chi phí</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @request_payment.business_trip_costs.each_with_index do |cost, index| %>
+          <% if cost.receipt_type == "NoReceipt" %>
+            <tr>
+              <th scope='col' style="width: 5%;"><%= index + 1 %></th>
+              <td class=" form-group " style="width: 15%;"><%= cost.cost_type.name %></td>
+              <td class=" form-group w-100 pr-5"  style="text-align: right"><%= cost.receipt.amount %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="font-weight-bold mr-5 text-right mb-3" style="font-size: 1.2em">
+      Tổng chi phí
+    </div>
+    <div class="font-weight-bold mr-5 text-right" style="font-size: 1.4em">
+      <%= @request_payment.total_amount %>
+    </div>
+
   </div>
-  <div class="col-2"></div>
 </div>
 

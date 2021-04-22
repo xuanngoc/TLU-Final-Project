@@ -37,16 +37,26 @@ class RequestPaymentsController < ApplicationController
   end
 
   def create
-    @request_payment = RequestPayment.new(business_trip_id: @business_trip.id)
+    @request_payment = RequestPayment.new(business_trip: @business_trip, user: current_user)
 
     if @request_payment.save
       e_receipt_params[:e_receipt].each do |receipt_params|
-        reciept = EReceipt.create(receipt_params.except(:cost_type_id, :amount))
+        reciept = EReceipt.create(receipt_params.except(:cost_type_id))
         BusinessTripCost.create(
           cost_type_id: receipt_params[:cost_type_id],
           receipt: reciept,
           request_payment_id: @request_payment.id,
-          amount: receipt_params[:amount]
+          # amount: receipt_params[:amount]
+        )
+      end
+
+      no_receipt_params[:no_receipt].each do |receipt_params|
+        reciept = NoReceipt.create(receipt_params.except(:cost_type_id))
+        BusinessTripCost.create(
+          cost_type_id: receipt_params[:cost_type_id],
+          receipt: reciept,
+          request_payment_id: @request_payment.id,
+          # amount: receipt_params[:amount]
         )
       end
     end
@@ -65,14 +75,25 @@ class RequestPaymentsController < ApplicationController
       @request_payment.business_trip_costs.destroy_all
 
       e_receipt_params[:e_receipt].each do |receipt_params|
-        reciept = EReceipt.create(receipt_params.except(:cost_type_id, :amount))
+        reciept = EReceipt.create(receipt_params.except(:cost_type_id))
         BusinessTripCost.create(
           cost_type_id: receipt_params[:cost_type_id],
           receipt: reciept,
           request_payment_id: @request_payment.id,
-          amount: receipt_params[:amount]
+          # amount: receipt_params[:amount]
         )
       end
+
+      no_receipt_params[:no_receipt].each do |receipt_params|
+        reciept = NoReceipt.create(receipt_params.except(:cost_type_id))
+        BusinessTripCost.create(
+          cost_type_id: receipt_params[:cost_type_id],
+          receipt: reciept,
+          request_payment_id: @request_payment.id,
+          # amount: receipt_params[:amount]
+        )
+      end
+
       @request_payment.update(status: 1)
 
       redirect_to business_trip_request_payments_path
@@ -90,6 +111,10 @@ class RequestPaymentsController < ApplicationController
   end
 
   def e_receipt_params
+    params.permit!
+  end
+
+  def no_receipt_params
     params.permit!
   end
 
