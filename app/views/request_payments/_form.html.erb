@@ -1,6 +1,5 @@
-<div class="row" data-controller="request-payment-form">
-  <div class="col-2"></div>
-  <%= form_for [@business_trip, @request_payment], :html => {:class => 'col-8'} do |f| %>
+<div class="mr-5 m-5" data-controller="request-payment-form">
+  <%= form_for [@business_trip, @request_payment], :html => {class: ''} do |f| %>
     <h5 class="text-center">Danh sách chi phí</h5>
     <div class="dropdown mr-1 text-right">
       <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
@@ -12,48 +11,42 @@
       </div>
     </div>
 
-    <div id="listReceipt">
-        <% if !@request_payment.business_trip_costs.empty? %>
-            <% @request_payment.business_trip_costs.each do |cost| %>
-                <div class="ml-5 mr-5">
-                  <h6 class="font-weight-bold">➢ Thông tin hóa đơn</h6>
-                  <div class="ml-3 row form-group">
-                    <label>Loại chi phí</label>
-                    <select class=" col-12 form-control" name="e_receipt[][cost_type_id]">
-                        <% CostType.all.each do |ct| %>
-                          <% if cost.cost_type_id == ct.id %>
-                            <option value="<%= ct.id %>" selected><%= ct.name %></option>
-                          <% else %>
-                            <option value="<%= ct.id %>"><%= ct.name %></option>
-                          <% end %>
-                        <% end %>
-                    </select>
-                  </div>
-                  <div class="ml-2 row">
-                    <div class="col-6 form-group">
-                      <label>Mã số thuế người bán</label>
-                      <input name="e_receipt[][tax_number]" class="form-control" value="<%= cost.receipt.tax_number %>" required />
-                    </div>
-                    <div class="col-6 form-group">
-                      <label>Mẫu số</label>
-                      <input name='e_receipt[][template_number]' class="form-control" value="<%= cost.receipt.template_number %>" required  />
-                    </div>
-                  </div>
-                  <div class="ml-2 row">
-                    <div class="col-6 form-group">
-                      <label>Ký hiệu hóa đơn</label>
-                      <input name='e_receipt[][symbols]', class="form-control" value="<%= cost.receipt.symbols %>" required />
-                    </div>
-                    <div class="col-6 form-group">
-                      <label>Số hóa đơn</label>
-                      <input name='e_receipt[][receipt_number]', class="form-control" value="<%= cost.receipt.receipt_number %>" required />
-                    </div>
-                  </div>
-              </div>
-            <% end %>
-        <% else %>
+    <div >
+      <table id="table-EReceipt" class="table w-100">
+        <caption style="caption-side: top">Danh sách chi phí có hóa đơn</caption>
+        <thead>
+          <tr>
+            <th scope="col" style="width: 5%;">STT</th>
+            <th scope="col">Loại chi phí</th>
+            <th scope="col">Mã số thuế người bán</th>
+            <th scope="col">Ký hiệu hóa đơn</th>
+            <th scope="col">Mẫu số</th>
+            <th scope="col">Số hóa đơn</th>
+            <th scope="col" class="text-right pr-4">Tổng chi phí</th>
+          </tr>
+        </thead>
+        <tbody>
 
-        <% end %>
+        </tbody>
+      </table>
+
+      <table id="table-NoReceipt" class="table w-100 mt-5">
+        <caption style="caption-side: top">Danh sách chi phí không hóa đơn</caption>
+        <thead>
+          <tr>
+            <th scope="col" style="width: 5%;">STT</th>
+            <th scope="col">Loại chi phí</th>
+            <%# <th scope="col">Mã số thuế người bán</th>
+            <th scope="col">Ký hiệu hóa đơn</th>
+            <th scope="col">Mẫu số</th>
+            <th scope="col">Số hóa đơn</th> %>
+            <th scope="col" class="text-right pr-4">Tổng chi phí</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
     </div>
 
     <div class="d-flex flex-row-reverse mt-5">
@@ -61,6 +54,5 @@
       <button type="button" class="btn btn-danger  pl-4 pr-4" data-dismiss="modal">Hủy</button>
     </div>
   <% end %>
-  <div class="col-2"></div>
 </div>
 
