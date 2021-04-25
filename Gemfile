@@ -20,6 +20,8 @@ gem 'devise'
 
 gem 'blueprinter'
 gem 'faker'
+gem "cancan"
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -41,7 +41,7 @@ export default class extends Controller {
         <td class=" form-group">
           <input name='e_receipt[][receipt_number]', class="form-control" placeholder="0026902" required />
         </td>
-        <td class=" form-group" style="width: 15%;">
+        <td class=" form-group pr-5" style="text-align: right">
           <input type='number' name="e_receipt[][amount]" class="form-control" required  />
         </td>
       </tr>
@@ -64,7 +64,7 @@ export default class extends Controller {
           </select>
         </td>
 
-        <td class="form-group ">
+        <td class=" form-group w-100 pr-5"  style="text-align: right">
           <input type='number' name="no_receipt[][amount]" class="form-control"  style="float: right; width: 17%" required  />
         </td>
       </tr>
