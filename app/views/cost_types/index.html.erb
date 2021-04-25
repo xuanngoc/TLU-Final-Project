@@ -34,9 +34,11 @@
 <h5 class="mt-5"> ★ Danh sách các loại chi phí </h5>
 <div class="row">
   <div class="col-10"></div>
-  <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createModalCostType" >
-    Thêm loại chi phí
-  </button>
+  <% if current_user.financial_department? or current_user.admin? %>
+    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createModalCostType" >
+      Thêm loại chi phí
+    </button>
+  <% end %>
 </div>
 <div>
   <% if @cost_types.empty? %>
@@ -56,9 +58,11 @@
           <th scope="row"><%= index + 1 %></th>
           <td><%= type.name %></td>
           <td>
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editModalCostType" data-id="<%= type.id %>" data-name="<%= type.name %>"><i class="fas fa-edit"></i></button>
-            <%= link_to type,  method: :delete, data: { confirm: "Really ?  " + type.name }, class: 'btn btn-danger' do %>
-              <i class="fas fa-trash"></i>
+            <% if current_user.financial_department? or current_user.admin? %>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editModalCostType" data-id="<%= type.id %>" data-name="<%= type.name %>"><i class="fas fa-edit"></i></button>
+              <%= link_to type,  method: :delete, data: { confirm: "Really ?  " + type.name }, class: 'btn btn-danger' do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
             <% end %>
           </td>
         </tr>

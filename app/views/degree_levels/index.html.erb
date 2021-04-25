@@ -60,9 +60,11 @@
             <th scope="row"><%= index + 1 %></th>
             <td><%= d.name %></td>
             <td>
-              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editModalDegree" data-id="<%= d.id %>" data-name="<%= d.name %>" data-degree-name="<%= key.name %>"><i class="fas fa-edit"></i></button>
-              <%= link_to d,  method: :delete, data: { confirm: "Really ?  " + d.name }, class: 'btn btn-danger' do %>
-                <i class="fas fa-trash"></i>
+              <% if current_user.hr_department? or current_user.admin? %>
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editModalDegree" data-id="<%= d.id %>" data-name="<%= d.name %>" data-degree-name="<%= key.name %>"><i class="fas fa-edit"></i></button>
+                <%= link_to d,  method: :delete, data: { confirm: "Really ?  " + d.name }, class: 'btn btn-danger' do %>
+                  <i class="fas fa-trash"></i>
+                <% end %>
               <% end %>
             </td>
           </tr>

@@ -9,4 +9,7 @@ class UserBlueprint < Blueprinter::Base
     end
   end
 
+  view :department do
+    fields :full_name, :code
+  end
 end

@@ -6,12 +6,26 @@ jQuery(function(){
     var id = button.data('id')
 
 
+
+    fetch(`/departments/${id}/api/personnels`)
+    .then(response => response.json())
+    .then((users) => {
+      var options = ''
+      users.map(user => {
+        var option = `<option value=${user.id}>${user.code} - ${user.full_name}</option>`;
+        options += option;
+      });
+
+      $('#select-head-of').append(options)
+
+    });
+
+
     var modal = $(this)
     modal.find('.modal-body .code input').val(code)
     modal.find('.modal-body .name input').val(name)
 
     modal.find('.modal-body form').attr('action', '/departments/' + id);
-
   })
 
   $('#deleteModal').on('show.bs.modal', function (event) {
