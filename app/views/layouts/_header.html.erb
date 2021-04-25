@@ -2,12 +2,12 @@
 
   <div class="mr-5">
     <% if user_signed_in? %>
-      <div class="d-flex align-items-end h-50 mt-2">
-        <% if current_user.role == 'admin' or current_user.role == 'education' %>
-          <span class=""> Hello, </span>
-          <span class="" ><%= current_user.role %></span>
+      <div class="mt-2">
+        <% if current_user.degree_level && current_user.degree_level.department %>
+          <p class="mb-0"> Hello, <%= current_user.full_name %></p>
+          <p class="mb-0 text-danger" ><%= current_user.degree_level.department.name %></p>
         <% else %>
-          <span> Hello, <strong><%= current_user.full_name %></strong> </span>
+          <span> Hello, <strong><%= current_user.role %></strong> </span>
         <% end %>
       </div>
       <%= link_to('Đăng xuất', destroy_user_session_path, method: :delete) %>

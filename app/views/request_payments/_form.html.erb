@@ -22,7 +22,7 @@
             <th scope="col">Ký hiệu hóa đơn</th>
             <th scope="col">Mẫu số</th>
             <th scope="col">Số hóa đơn</th>
-            <th scope="col" class="text-right pr-4">Tổng chi phí</th>
+            <th scope="col" class="text-right pr-4">Chi phí</th>
           </tr>
         </thead>
         <tbody>
@@ -36,13 +36,20 @@
           <tr>
             <th scope="col" style="width: 5%;">STT</th>
             <th scope="col">Loại chi phí</th>
-            <th scope="col" class="text-right pr-4">Tổng chi phí</th>
+            <th scope="col" class="text-right pr-4">Chi phí</th>
           </tr>
         </thead>
         <tbody>
 
         </tbody>
       </table>
+    </div>
+
+     <div class="font-weight-bold mr-5 text-right mb-3" style="font-size: 1.2em">
+      Tổng chi phí
+    </div>
+    <div id="total_amount" class="font-weight-bold mr-5 text-right" style="font-size: 1.4em">
+      <%= @request_payment.total_amount %>
     </div>
 
     <div class="d-flex flex-row-reverse mt-5">

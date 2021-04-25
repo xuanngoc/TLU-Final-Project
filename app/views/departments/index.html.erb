@@ -1,6 +1,8 @@
 <div class="row">
-  <div class="col-10"></div>
-  <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createModal">Thêm bộ phận</button>
+  <% if current_user.admin? or current_user.hr_department? %>
+    <div class="col-10"></div>
+    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createModal">Thêm bộ phận</button>
+  <% end %>
 </div>
 
 <!-- Modal -->
@@ -44,6 +46,7 @@
         <th scope="col">STT</th>
         <th scope="col">Mã</th>
         <th scope="col">Tên bộ phận</th>
+        <th scope="col">Trưởng bộ phận</th>
         <th scope="col">Hành động</th>
       </tr>
     </thead>
@@ -58,9 +61,14 @@
             <% end %>
           </td>
           <td>
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editModal" data-id="<%= department.id %>" data-code="<%= department.code %>" data-name="<%= department.name %>"><i class="fas fa-edit"></i></button>
-            <%= link_to department,  method: :delete, data: { confirm: "Really ?  " + department.name }, class: 'btn btn-danger' do %>
-              <i class="fas fa-trash"></i>
+            <%= department.user.present? ? department.user.full_name : '' %>
+          </td>
+          <td>
+            <% if current_user.admin? or current_user.hr_department? %>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editModal" data-id="<%= department.id %>" data-code="<%= department.code %>" data-name="<%= department.name %>"><i class="fas fa-edit"></i></button>
+              <%= link_to department,  method: :delete, data: { confirm: "Really ?  " + department.name }, class: 'btn btn-danger' do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
             <% end %>
           </td>
         </tr>

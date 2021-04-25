@@ -38,6 +38,14 @@ class DepartmentsController < ApplicationController
     redirect_to departments_path
   end
 
+  def show_personnel
+    @department = Department.find(params[:department_id])
+
+    personnels = User.where(degree_level: @department.degree_levels)
+
+    render json: UserBlueprint.render(personnels, view: :department), status: :ok
+  end
+
   private
 
   def find_department
@@ -47,7 +55,8 @@ class DepartmentsController < ApplicationController
   def department_params
     params.require(:department).permit(
       :code,
-      :name
+      :name,
+      :user_id
     )
   end
 end

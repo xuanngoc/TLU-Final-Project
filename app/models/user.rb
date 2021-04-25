@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum role: [ :admin, :education, :accountting, :personnel, :headmaster ]
+  enum role: [ :admin, :accountting, :personnel ]
 
   enum gender: {
     'Nam': true,
@@ -21,6 +21,26 @@ class User < ApplicationRecord
   scope :searchByName, -> (name) {
     where('full_name LIKE ?', "%#{name}%")
   }
+
+  def admin?
+    self.role == "admin"
+  end
+
+  def personnel?
+    self.role == "personnel"
+  end
+
+  def head_of_department?
+    User.where(id: Department.all.pluck(:user_id)).include?(self)
+  end
+
+  def financial_department?
+    User.where(degree_level: Department.find_by(name: 'Bộ phận tài vụ').degree_levels).include?(self)
+  end
+
+  def hr_department?
+    User.where(degree_level: Department.find_by(name: 'Bộ phận nhân sự').degree_levels).include?(self)
+  end
 
   private
 

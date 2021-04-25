@@ -19,11 +19,7 @@
     <% if user_signed_in? %>
       <div class="row">
         <div class="col-2 side_bar mh-100">
-          <% if current_user.role == 'admin' %>
-            <%= render 'layouts/side_bar' %>
-          <% elsif current_user.role == 'personnel' %>
-            <%= render 'layouts/side_bar_personnel' %>
-          <% end %>
+          <%= render 'layouts/side_bar' %>
         </div>
 
         <div class="col-10" style="padding-left: 0; padding-right: 0">

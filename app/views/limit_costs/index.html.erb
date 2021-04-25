@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Thêm cấp bậc</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Sửa thông tin</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -43,11 +43,13 @@
               </ul>
             </td>
             <td class="align-middle">
-              <button type="button" class="btn btn-secondary" data-toggle="modal"
-                data-target="#editModalLimit"
-                data-id="<%= d.id %>" data-name="<%= d.name %>" data-department="<%= key.name %>" >
-                <i class="fas fa-sliders-h" style="font-size: 1.3em"></i>
-              </button>
+              <% if current_user.financial_department? or current_user.admin? %>
+                <button type="button" class="btn btn-secondary" data-toggle="modal"
+                  data-target="#editModalLimit"
+                  data-id="<%= d.id %>" data-name="<%= d.name %>" data-department="<%= key.name %>" >
+                  <i class="fas fa-sliders-h" style="font-size: 1.3em"></i>
+                </button>
+              <% end %>
             </td>
           </tr>
         <% end %>

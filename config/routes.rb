@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :departments do
     resources :personnels
+
+    get '/api/personnels', to: 'departments#show_personnel'
   end
 
   resources :degree_levels

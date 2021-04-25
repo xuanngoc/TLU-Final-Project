@@ -42,7 +42,7 @@ export default class extends Controller {
           <input name='e_receipt[][receipt_number]', class="form-control" placeholder="0026902" required />
         </td>
         <td class=" form-group pr-5" style="text-align: right">
-          <input type='number' name="e_receipt[][amount]" class="form-control" required  />
+          <input type='number' name="e_receipt[][amount]" class="form-control amount-input" required data-action='change->request-payment-form#calculatorTotal' />
         </td>
       </tr>
     `;
@@ -65,7 +65,12 @@ export default class extends Controller {
         </td>
 
         <td class=" form-group w-100 pr-5"  style="text-align: right">
-          <input type='number' name="no_receipt[][amount]" class="form-control"  style="float: right; width: 17%" required  />
+          <input type='number'
+              name="no_receipt[][amount]" \
+              class="form-control amount-input"
+              style="float: right; width: 17%"
+              required
+              data-action='change->request-payment-form#calculatorTotal'  />
         </td>
       </tr>
     `;
@@ -81,4 +86,15 @@ export default class extends Controller {
     });
     return options;
   }
+
+  calculatorTotal() {
+    const listAmounts = document.getElementsByClassName('amount-input')
+    let total = 0
+    for (let i = 0; i < listAmounts.length; i++)
+      if(parseInt(listAmounts[i].value) >= 0)
+        total += parseInt(listAmounts[i].value)
+
+    document.getElementById('total_amount').innerHTML = total
+  }
+
 }
