@@ -1,5 +1,11 @@
 
 <div>
+<div class="row">
+      <div class="col-12 text-center">
+        <span>Người đề xuất thanh toán:</span>
+        <span class="font-weight-bold"><%= @request_payment.user.full_name %></span>
+      </div>
+    </div>
     <div class="row">
       <div class=" offset-7 text-right text-danger mr-5 mt-3 mb-4">
         <span>Trạng thái: <%= @request_payment.status %></span>
@@ -15,7 +21,7 @@
 
     <div class="mt-5 mr-5 row justify-content-end">
       <div class="mr-5">
-        <% if @request_payment.business_trip.users.index(current_user) or current_user.role == 'admin' %>
+        <% if @request_payment.business_trip.users.index(current_user) or current_user.admin? %>
           <% if @request_payment.status == 'Tạm bị từ chối' or  @request_payment.status == 'Đang đợi xác nhận từ trưởng bộ phận' %>
             <%= link_to edit_business_trip_request_payment_path(business_trip_id: @business_trip.id, id: @request_payment.id), class: 'btn btn-secondary mt-3 mb-5 p-3 pl-5 pr-5', style: 'font-size: 1.11rem' do %>
               Sửa thông tin

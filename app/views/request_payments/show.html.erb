@@ -1,4 +1,8 @@
 <div>
+    <div class="col-12 text-center">
+        <span>Người đề xuất thanh toán:</span>
+        <span class="font-weight-bold"><%= @request_payment.user.full_name %></span>
+      </div>
     <%= render 'business_trip_info' %>
     <div class="row">
       <div class=" offset-7 text-right text-danger mr-5 mt-3 mb-4">
@@ -11,15 +15,25 @@
       <div class="col-2"></div>
       <div class="col-8">
         <div class="row">
-          <% if @request_payment.status == 'Đang đợi xác nhận từ bộ phận tài vụ' or @request_payment.status == 'Đang đợi xác nhận từ trưởng bộ phận tài vụ' %>
-            <%= link_to request_payment_approve_path(@request_payment), method: :post,  class: 'btn btn-secondary col-5', style: "width: 200px" do %>
-              Đồng ý yêu cầu
+          <% if @request_payment.status == 'Đang đợi xác nhận từ trưởng bộ phận' %>
+            <% if current_user.admin? or @request_payment.user.degree_level.department.user == current_user %>
+              <%= render 'buttons' %>
             <% end %>
-
-            <button type="button" class='btn btn-danger col-5' style= "width: 200px" data-toggle="modal" data-target="#exampleModal">
-              Từ chối
-            </button>
           <% end %>
+
+          <% if @request_payment.status == 'Đang đợi xác nhận từ bộ phận tài vụ' %>
+            <% if current_user.admin? or current_user.financial_department? %>
+              <%= render 'buttons' %>
+            <% end %>
+          <% end %>
+
+          <% if @request_payment.status == 'Đang đợi xác nhận từ trưởng bộ phận tài vụ' %>
+            <% if current_user.admin? or current_user.head_of_financial_department? %>
+              <%= render 'buttons' %>
+            <% end %>
+          <% end %>
+
+
         </div>
 
       </div>

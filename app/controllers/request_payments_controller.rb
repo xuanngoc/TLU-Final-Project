@@ -22,12 +22,16 @@ class RequestPaymentsController < ApplicationController
     request_payment = RequestPayment.find(params[:request_payment_id])
 
     case request_payment.status
+    when 'Đang đợi xác nhận từ trưởng bộ phận'
+      request_payment.status = 1
     when 'Đang đợi xác nhận từ bộ phận tài vụ'
       request_payment.status = 2
     when 'Đang đợi xác nhận từ trưởng bộ phận tài vụ'
-      request_payment.status = 4
+      request_payment.status = 3
     end
     request_payment.save
+
+    flash[:notice] = 'Duyệt đơn thành công'
 
     redirect_to list_payment_request_path
   end
@@ -64,6 +68,9 @@ class RequestPaymentsController < ApplicationController
         end
       end
     end
+
+    flash[:notice] = 'Đã tạo yêu cầu thành công, vui lòng đợi'
+
     redirect_to business_trip_request_payments_path
   end
 

@@ -36,22 +36,8 @@
           </td>
 
           <td>
-            <% if business_trip.users.index(current_user) or current_user.role == 'admin' %>
-              <% if business_trip.request_payment and business_trip.request_payment.status != 'Tạm bị từ chối'%>
-                  <%= link_to edit_business_trip_path(id: business_trip.id), class: 'btn btn-secondary disabled' do %>
-                    <i class="fas fa-edit"></i>
-                  <% end %>
-                  <%= link_to business_trip,  method: :delete, data: { confirm: "Really ?  " + business_trip.destination }, class: 'btn btn-danger disabled' do %>
-                    <i class="fas fa-trash"></i>
-                  <% end %>
-              <% else %>
-                <%= link_to edit_business_trip_path(id: business_trip.id), class: 'btn btn-secondary ' do %>
-                  <i class="fas fa-edit"></i>
-                <% end %>
-                <%= link_to business_trip,  method: :delete, data: { confirm: "Really ?  " + business_trip.destination }, class: 'btn btn-danger' do %>
-                  <i class="fas fa-trash"></i>
-                <% end %>
-              <% end %>
+            <% if business_trip.editable? %>
+              <%= render 'actions', {business_trip: business_trip} %>
             <% end %>
           </td>
         </tr>
