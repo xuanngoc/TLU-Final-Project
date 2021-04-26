@@ -1,0 +1,6 @@
+<%= link_to edit_business_trip_path(id: business_trip.id), class: 'btn btn-secondary ' do %>
+  <i class="fas fa-edit"></i>
+<% end %>
+<%= link_to business_trip,  method: :delete, data: { confirm: "Really ?  " + business_trip.destination }, class: 'btn btn-danger ' do %>
+  <i class="fas fa-trash"></i>
+<% end %>

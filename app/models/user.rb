@@ -38,6 +38,10 @@ class User < ApplicationRecord
     User.where(degree_level: Department.find_by(name: 'Bộ phận tài vụ').degree_levels).include?(self)
   end
 
+  def head_of_financial_department?
+    Department.find_by(name: 'Bộ phận tài vụ').user == self
+  end
+
   def hr_department?
     User.where(degree_level: Department.find_by(name: 'Bộ phận nhân sự').degree_levels).include?(self)
   end
