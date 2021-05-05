@@ -1,0 +1,19 @@
+<div>
+  <div class="col-12 text-center">
+    <span>Người đề xuất thanh toán:</span>
+    <span class="font-weight-bold"><%= @request_payment.user.full_name %></span>
+  </div>
+
+  <%= render 'business_trip_info' %>
+
+  <div class="row">
+    <div class=" offset-7 text-right text-danger mr-5 mt-3 mb-4">
+      <span>Trạng thái: <%= @request_payment.status %></span>
+    </div>
+  </div>
+
+  <%= render 'list_business_cost' %>
+
+
+</div>
+

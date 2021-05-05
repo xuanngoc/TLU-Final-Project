@@ -87,18 +87,26 @@ body {
     }
 
     .nav-item:hover {
-      margin-left: 7px;
+      color: blue;
+      font-size: 1.01em;
     }
 
-    li::after {
-      content: "";
-      display: block;
-      height: 1px;
-      width: 100%;
-      margin: 10px;
-      background: #f00;
+    .nav-item a:hover {
+      color: #44bd32;
+      font-size: 1.01em;
     }
+
   }
+}
+
+hr {
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin: 10px;
+  background: #f00;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .header {
@@ -142,4 +150,13 @@ body {
 .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
   font-weight: bold;
   font-style: normal;
+}
+
+.nav-item .side-bar-child-item {
+  display: none;
+}
+
+
+.nav-item:hover .side-bar-child-item {
+  display: block
 }

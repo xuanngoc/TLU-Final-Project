@@ -26,7 +26,7 @@
               <%= business_trip.destination %>
             <% end %>
           </td>
-          <td><%= business_trip.to_date.strftime("%d/%m/%Y") %> - <%= business_trip.from_date.strftime("%d/%m/%Y") %></td>
+          <td><%= business_trip.from_date.strftime("%d/%m/%Y") %> - <%= business_trip.to_date.strftime("%d/%m/%Y") %></td>
           <td>
             <% if business_trip.request_payment %>
               <%= business_trip.request_payment.status %>

@@ -1,0 +1,61 @@
+<div class="mb-5">
+  <%= form_tag({} , { method: :get, class: "row justify-content-center"}) do %>
+    <div class="col-3">
+      <p>Theo ngày</p>
+      <div class="row">
+        <label class="col-4">Từ ngày</label>
+        <%= text_field_tag :from_date, params[:from_date], name: :from_date, class: 'col-8', placeholder: nil, data: {
+          controller: "flatpickr",
+          flatpickr_date_format: "d-m-Y",
+          flatpickr_max_date: Time.zone.now
+        } %>
+      </div>
+
+      <div class="row mt-1">
+        <label class="col-4">Đến ngày</label>
+        <%= text_field_tag :from_date, params[:to_date], name: :to_date, class: 'col-8', placeholder: nil, data: {
+          controller: "flatpickr",
+          flatpickr_date_format: "d-m-Y",
+          flatpickr_max_date: Time.zone.now
+        } %>
+      </div>
+    </div>
+
+    <div class="col-2">
+      <p>Trạng thái</p>
+      <%= select_tag :status, options_for_select(RequestPayment.statuses, params[:status]), prompt: "Tất cả", class: 'w-100', style: "padding: 5px 2px" %>
+    </div>
+
+    <div class="col-2">
+      <p>Bộ phận</p>
+        <%= select_tag :department, options_from_collection_for_select(Department.all, 'id', 'name', params[:department]), prompt: "Tất cả bộ phận", class: 'w-100', style: "padding: 5px 2px" %>
+    </div>
+
+    <div class="col-2">
+      <label class="d-block"><i class="fas fa-search"></i></label>
+      <button type="submit" class="btn btn-primary  pl-4 pr-4" data-dismiss="modal">Tìm kiếm</button>
+    </div>
+  <% end %>
+</div>
+
+
+<div >
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Điểm đến</th>
+        <th scope="col">Trạng thái</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @request_payments.each_with_index do |request, index| %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td class="text-danger"><%= link_to request.business_trip.destination, report_request_payment_path(request) %></td>
+          <td><%= request.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div>

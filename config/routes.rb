@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   resources :departments do
     resources :personnels
-
     get '/api/personnels', to: 'departments#show_personnel'
   end
 
@@ -39,6 +38,7 @@ Rails.application.routes.draw do
 
   resources :reason_rejects, only: [:create]
 
+  resources :report_request_payments
 
   get 'list_payment_request', to: 'request_payments#list_request_payment'
 

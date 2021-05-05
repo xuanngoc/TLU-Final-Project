@@ -8,8 +8,10 @@
     "@rails/webpacker": "5.2.1",
     "autocomplete.js": "^0.38.0",
     "axios": "^0.21.1",
+    "flatpickr": "^4.6.9",
     "randomstring": "^1.1.5",
     "stimulus": "^2.0.0",
+    "stimulus-flatpickr": "^1.4.0",
     "toastr": "^2.1.4",
     "turbolinks": "^5.2.0"
   },
