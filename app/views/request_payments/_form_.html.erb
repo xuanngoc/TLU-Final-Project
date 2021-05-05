@@ -1,6 +1,8 @@
+<h5 class="" style="margin: 10px 150px 10px 180px !important">3, Danh sách chi phí</h5>
+
 <div class="ml-5 mr-5" data-controller="request-payment-form">
   <%= form_for [@business_trip, @request_payment],  method: :patch, :html => {:class => ''} do |f| %>
-    <h5 class="text-center">Danh sách chi phí</h5>
+    <%# <h5 class="text-center">Danh sách chi phí</h5> %>
     <div class="dropdown mr-1 text-right">
       <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
         Thêm chi phí
@@ -98,7 +100,7 @@
     </div>
 
     <div class="font-weight-bold mr-5 text-right mb-3" style="font-size: 1.2em">
-      Tổng chi phí
+      Tổng số tiền
     </div>
     <div id="total_amount" class="font-weight-bold mr-5 text-right" style="font-size: 1.4em">
       <%= @request_payment.total_amount %>
