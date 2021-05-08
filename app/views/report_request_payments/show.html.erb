@@ -1,7 +1,7 @@
-<div class="row">
-  <div class=" offset-7 text-right text-danger mr-5 mt-3 mb-4">
-    <span>Trạng thái: <%= @request_payment.status %></span>
-  </div>
+<div class="d-flex flex-row-reverse">
+  <%= link_to report_request_payment_download_path(@request_payment, format: "pdf"), target: "_blank", class: "btn btn-secondary m-3 download" do %>
+      <i class="fas fa-print"></i> In báo cáo
+  <% end %>
 </div>
 <div class="ml-5 mr-5 pb-5 border border-dark">
   <%= render 'header_form' %>
