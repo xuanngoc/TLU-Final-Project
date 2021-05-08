@@ -11,7 +11,7 @@ class RequestPaymentsController < ApplicationController
   end
 
   def list_request_payment
-    if params[:status] and params[:status] != 0.to_s
+    if params[:status].present?
       @request_payments = RequestPayment.where(status: params[:status])
     else
       @request_payments = RequestPayment.all
