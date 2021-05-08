@@ -38,7 +38,9 @@ Rails.application.routes.draw do
 
   resources :reason_rejects, only: [:create]
 
-  resources :report_request_payments
+  resources :report_request_payments do
+    resource :download, only: [:show]
+  end
 
   get 'list_payment_request', to: 'request_payments#list_request_payment'
 

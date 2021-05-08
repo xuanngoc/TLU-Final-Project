@@ -1,0 +1,25 @@
+.row {
+  display: -webkit-box; /* wkhtmltopdf uses this one */
+  display: flex;
+  -webkit-box-pack: center; /* wkhtmltopdf uses this one */
+  justify-content: center;
+}
+
+.row > div {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+.row > div:last-child {
+  margin-right: 0;
+}
+
+
+table, thead, tbody, th, td {
+  border: 1px solid black;
+}
+
+caption {
+  color: black;
+}
