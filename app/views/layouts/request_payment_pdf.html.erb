@@ -6,7 +6,7 @@
   <%# <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" > %>
 
   <style>
-    <%= Rails.application.assets.find_asset('pdf.scss').to_s %>
+    <%= (Rails.application.assets || ::Sprockets::Railtie.build_environment(Rails.application)).find_asset('pdf.scss').to_s %>
   </style>
 </head>
 <body>
