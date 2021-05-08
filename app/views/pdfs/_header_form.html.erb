@@ -1,0 +1,11 @@
+<div class="row" style="height: 120px; margin: 0 50px !important">
+  <div class="col-6">
+    <%# <p>Bộ phận: <%= current_user.degree_level.department.name %>
+    <p>Số: PR000<%= RequestPayment.last.id %></p>
+  </div>
+
+  <div class="col-6">
+    <p class="text-center font-weight-bold" style="font-size: 1.2rem">Công ty cổ phần LIQUID</p>
+    <p class="text-center">Hà Nội, ngày <%=  request_payment.created_at.day %>, tháng <%=  request_payment.created_at.month %>, năm <%=  request_payment.created_at.year %> </p>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<h4 class="text-center">BẢNG KÊ KHAI THANH TOÁN CHI PHÍ CHUYÊN CÔNG TÁC</h4>
+
+<h5 class="font-weight-bold" style="margin: 50px 0 10px 0 !important">1, Thông tin cá nhân</h5>
+<div class="ml-5 mr-5">
+    <div>
+      <span class="font-weight-bold">Người yêu cầu:</span>
+      <span><%= request_payment.user.full_name ? request_payment.user.full_name : request_payment.user.role %></span>
+    </div>
+    <div>
+      <span class="font-weight-bold">Bộ phận:</span>
+      <span><%=  request_payment.user.degree_level ? request_payment.user.degree_level.department.name : 'admin' %></span>
+    </div>
+</div>
+
+<h5 class="font-weight-bold" style="margin: 10px 0 10px 0 !important">2, Chi tiết thông tin chuyến công tác</h5>
+<div class="w-full">
+  <div class=" mr-5 ml-5">
+    <label class="font-weight-bold">Quyết định số:</label>
+    <span><%= request_payment.business_trip.decision_writing %></span>
+  </div>
+  <div class="mr-5 ml-5">
+    <label class="font-weight-bold">Điểm đến:</label>
+    <span><%= request_payment.business_trip.destination %></span>
+  </div>
+
+  <div class="row mr-5 ml-5">
+    <div class="col-6" style="padding-left: 0">
+      <label class="font-weight-bold" >Từ ngày:</label>
+      <span><%= request_payment.business_trip.from_date %></span>
+    </div>
+    <div class="col-6" >
+      <label class="font-weight-bold">Đến ngày:</label>
+      <span><%= request_payment.business_trip.to_date %></span>
+    </div>
+  </div>
+  <span class="font-weight-bold mr-5 ml-5">Danh sách nhân viên tham gia</span><br>
+  <ul class="d-flex flex-wrap mr-5 ml-5">
+    <% request_payment.business_trip.users.each do |personnel| %>
+      <li class="w-50">
+        <%= personnel.code %> - <%= personnel.full_name %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class=" mr-5 ml-5">
+    <span class="font-weight-bold">Mục đích chuyến công tác:</span><br>
+    <p class="ml-4">
+      <%= request_payment.business_trip.purpose.capitalize() %>
+    </p>
+  </div>
+
+</div>
+
