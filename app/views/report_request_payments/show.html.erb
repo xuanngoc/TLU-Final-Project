@@ -1,4 +1,8 @@
 <div>
+  <%= link_to "Download PDF",
+    report_request_payment_download_path(@request_payment, format: "pdf"),
+    target: "_blank",
+    class: "download" %>
   <div class="col-12 text-center">
     <span>Người đề xuất thanh toán:</span>
     <span class="font-weight-bold"><%= @request_payment.user.full_name %></span>

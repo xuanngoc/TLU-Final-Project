@@ -1,0 +1,67 @@
+<h5 class="font-weight-bold" style="margin: 10px 0 10px 0 !important">3, Danh sách chi phí</h5>
+<div class="pl-2 pr-2">
+  <div class="">
+    <%# <h4 class="ml-2">➢ Danh sách chi phí</h4> %>
+
+    <table id="table-EReceipt" class="table w-100">
+      <caption style="caption-side: top">Danh sách chi phí có hóa đơn</caption>
+      <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Loại chi phí</th>
+          <th scope="col">Mã số thuế người bán</th>
+          <th scope="col">Ký hiệu hóa đơn</th>
+          <th scope="col">Mẫu số</th>
+          <th scope="col">Số hóa đơn</th>
+          <th scope="col" class="text-right pr-5">Chi phí</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% request_payment.business_trip_costs.each_with_index do |cost, index| %>
+          <% if cost.receipt_type == "EReceipt" %>
+            <tr>
+              <th scope='col'><%= index + 1 %></th>
+              <td class=" form-group " style="width: 15%;"><%= cost.cost_type.name %></td>
+              <td class=" form-group"><%= cost.receipt.tax_number %></td>
+              <td class=" form-group"><%= cost.receipt.template_number %></td>
+              <td class=" form-group"><%= cost.receipt.symbols %></td>
+              <td class=" form-group"><%= cost.receipt.receipt_number %></td>
+              <td class=" form-group pr-5 amount-input" style="text-align: right"><%= cost.receipt.amount %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+    <table id="table-NoReceipt" class="table w-100">
+      <caption style="caption-side: top">Danh sách chi phí không hóa đơn</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 5%;">STT</th>
+          <th scope="col">Loại chi phí</th>
+          <th scope="col" class="text-right pr-5">Chi phí</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% request_payment.business_trip_costs.each_with_index do |cost, index| %>
+          <% if cost.receipt_type == "NoReceipt" %>
+            <tr>
+              <th scope='col' style="width: 5%;"><%= index + 1 %></th>
+              <td class=" form-group " style="width: 15%;"><%= cost.cost_type.name %></td>
+              <td class=" form-group w-100 pr-5 amount-input"  style="text-align: right"><%= cost.receipt.amount %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="font-weight-bold mr-5 text-right mb-3" style="font-size: 1.1em">
+      Tổng số tiền
+    </div>
+    <div class="font-weight-bold mr-5 text-right" style="font-size: 1.2em">
+      <%= request_payment.total_amount %>
+    </div>
+
+  </div>
+</div>
+
