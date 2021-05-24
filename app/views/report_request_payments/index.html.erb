@@ -45,6 +45,9 @@
       <tr>
         <th scope="col">STT</th>
         <th scope="col">Điểm đến</th>
+        <th scope="col">Từ ngày - Đến ngaỳ</th>
+        <th scope="col">Số lượng người</th>
+        <th scope="col">Tổng số tiền</th>
         <th scope="col">Trạng thái</th>
       </tr>
     </thead>
@@ -53,7 +56,11 @@
         <tr>
           <th scope="row"><%= index + 1 %></th>
           <td class="text-danger"><%= link_to request.business_trip.destination, report_request_payment_path(request) %></td>
+          <td><%= request.business_trip.from_date %> - <%= request.business_trip.to_date %></td>
+          <td><%= request.business_trip.users.count %></td>
+          <td class="currency"><%= request.total_amount %></td>
           <td><%= request.status %></td>
+
         </tr>
       <% end %>
     </tbody>

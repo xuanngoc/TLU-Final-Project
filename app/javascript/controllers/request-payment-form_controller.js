@@ -13,7 +13,7 @@ export default class extends Controller {
     axios.get(`/api/v1/cost_types`)
     .then((response) => {
       this.listCostTypes = response.data;
-      console.log(this.listCostTypes);
+      // console.log(this.listCostTypes);
     });
 
   }
@@ -42,7 +42,9 @@ export default class extends Controller {
           <input name='e_receipt[][receipt_number]', class="form-control" placeholder="0026902" required />
         </td>
         <td class=" form-group pr-5" style="text-align: right">
-          <input type='number' name="e_receipt[][amount]" class="form-control amount-input" required data-action='change->request-payment-form#calculatorTotal' />
+          <input type='number' name="e_receipt[][amount]"
+            class="form-control amount-input input-currency" required
+            data-action='keyup->request-payment-form#calculatorTotal' />
         </td>
       </tr>
     `;
@@ -67,10 +69,10 @@ export default class extends Controller {
         <td class=" form-group w-100 pr-5"  style="text-align: right">
           <input type='number'
               name="no_receipt[][amount]" \
-              class="form-control amount-input"
+              class="form-control amount-input input-currency"
               style="float: right; width: 17%"
               required
-              data-action='change->request-payment-form#calculatorTotal'  />
+              data-action='keyup->request-payment-form#calculatorTotal'  />
         </td>
       </tr>
     `;
@@ -94,7 +96,10 @@ export default class extends Controller {
       if(parseInt(listAmounts[i].value) >= 0)
         total += parseInt(listAmounts[i].value)
 
-    document.getElementById('total_amount').innerHTML = total
+    document.getElementById('total_amount').innerHTML = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ', ')
+  }
+
+  formatCurrency(event) {
   }
 
 }

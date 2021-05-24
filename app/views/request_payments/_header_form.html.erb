@@ -1,8 +1,10 @@
 <div class="row align-items-center" style="height: 200px; margin: 0 150px !important">
   <div class="col-6">
-    <%# <p>Bộ phận: <%= current_user.degree_level.department.name %>
-    <p>Số: PR000<%= RequestPayment.last.id + 1  if RequestPayment.last %></p>
-    <p>Số: PR0001</p>
+    <% if @request_payment.new_record? %>
+      <p>Số: PR000<%= RequestPayment.last.id + 1  if RequestPayment.last %></p>
+    <% else %>
+      <p>Số: PR000<%= @request_payment.id %></p>
+    <% end %>
   </div>
 
   <div class="col-6">

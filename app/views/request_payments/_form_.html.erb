@@ -56,7 +56,9 @@
                   <input name='e_receipt[][receipt_number]', class="form-control" value="<%= cost.receipt.receipt_number %>" required />
                 </td>
                 <td class=" form-group pr-5" style="text-align: right">
-                  <input type='number' name="e_receipt[][amount]" class="form-control amount-input" value="<%= cost.receipt.amount %>" required  />
+                  <input type='number' name="e_receipt[][amount]" class="form-control amount-input"
+                      value="<%= cost.receipt.amount %>" required
+                      data-action='keyup->request-payment-form#calculatorTotal'  />
                 </td>
               </tr>
             <% end %>
@@ -90,7 +92,10 @@
                   </select>
                 </td>
                 <td class=" form-group w-100 pr-5"  style="text-align: right">
-                  <input type='number' name="no_receipt[][amount]" class="amount-input form-control"  style="float: right; width: 17%" value="<%= cost.receipt.amount %>" required  />
+                  <input type='number' name="no_receipt[][amount]"
+                      class="amount-input form-control"
+                      style="float: right; width: 17%" value="<%= cost.receipt.amount %>" required
+                      data-action='keyup->request-payment-form#calculatorTotal'  />
                 </td>
               </tr>
             <% end %>
@@ -102,7 +107,7 @@
     <div class="font-weight-bold mr-5 text-right mb-3" style="font-size: 1.2em">
       Tổng số tiền
     </div>
-    <div id="total_amount" class="font-weight-bold mr-5 text-right" style="font-size: 1.4em">
+    <div id="total_amount" class="currency font-weight-bold mr-5 text-right" style="font-size: 1.4em">
       <%= @request_payment.total_amount %>
     </div>
 

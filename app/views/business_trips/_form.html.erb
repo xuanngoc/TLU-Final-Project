@@ -28,16 +28,16 @@
     <div class=" form-group">
       <label>Danh sách nhân viên tham gia</label>
       <div id="list-personnels">
-          <% if !@business_trip.users.empty? %>
-            <% @business_trip.users.each do |user| %>
-              <div>
-                <span class="ml-5" ><%= user.code %> - <%= user.full_name %>
-                  <i class="far fa-times-circle ml-3" data-action='click->business-trip-form#removePersonnel'></i>
-                </span>
-                <input name="list_personnel[]" type="hidden" value="<%= user.id %>" />
-              </div>
-            <% end %>
+        <% if !@business_trip.users.empty? %>
+          <% @business_trip.users.each do |user| %>
+            <div>
+              <span class="ml-5" ><%= user.code %> - <%= user.full_name %>
+                <i class="far fa-times-circle ml-3" data-action='click->business-trip-form#removePersonnel'></i>
+              </span>
+              <input name="list_personnel[]" type="hidden" value="<%= user.id %>" />
+            </div>
           <% end %>
+        <% end %>
       </div>
       <input class="form-control" name="searchText" placeholder="Nhập tên nhân viên" data-business-trip-form-target="searchText"/>
     </div>

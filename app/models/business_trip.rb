@@ -9,16 +9,9 @@ class BusinessTrip < ApplicationRecord
   def editable?
     return true if self.request_payment.nil?
 
-    if [
-        'Không chấp thuận',
-        'Chấp thuận',
-        'Đang đợi xác nhận từ bộ phận tài vụ',
-        'Đang đợi xác nhận từ trưởng bộ phận tài vụ'
-      ].include?(self.request_payment.status)
-      false
-    else
-      true
-    end
+    return true if ['Tạm bị từ chối', 'Đang đợi xác nhận từ trưởng bộ phận'].include?(self.request_payment.status)
+
+    return false
   end
 
 end
