@@ -28,7 +28,10 @@ class RequestPaymentsController < ApplicationController
       request_payment.status = 2
     when 'Đang đợi xác nhận từ trưởng bộ phận tài vụ'
       request_payment.status = 3
+    when 'Đã chấp thuận, chờ thực hiện thanh toán'
+      request_payment.status = 4
     end
+
     request_payment.save
 
     flash[:notice] = 'Duyệt đơn thành công'

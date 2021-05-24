@@ -4,7 +4,7 @@ class ReasonRejectsController < ApplicationController
     reason = ReasonReject.new(reason_reject_params)
     if reason.save
       request_payment = RequestPayment.find(reason_reject_params[:request_payment_id])
-      request_payment.update(status: 5)
+      request_payment.update(status: 6)
 
       flash[:notice] = 'Create successful'
     else

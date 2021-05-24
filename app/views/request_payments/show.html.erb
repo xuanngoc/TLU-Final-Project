@@ -18,7 +18,7 @@
           <% end %>
         <% end %>
 
-        <% if @request_payment.status == 'Đang đợi xác nhận từ bộ phận tài vụ' %>
+        <% if @request_payment.status == 'Đang đợi xác nhận từ bộ phận tài vụ' or @request_payment.status == 'Đã chấp thuận, chờ thực hiện thanh toán' %>
           <% if current_user.admin? or current_user.financial_department? %>
             <%= render 'buttons' %>
           <% end %>
