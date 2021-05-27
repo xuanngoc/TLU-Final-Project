@@ -2,7 +2,7 @@ class BusinessTripsController < ApplicationController
   before_action :find_business_trip, only: [:edit, :update, :show, :destroy]
 
   def index
-    @business_trips = BusinessTrip.all
+    @pagy, @business_trips = pagy(BusinessTrip.all)
   end
 
   def new
@@ -13,9 +13,9 @@ class BusinessTripsController < ApplicationController
     @business_trip = BusinessTrip.new(business_trip_params)
     if @business_trip.save
       create_business_trip_personnel
-      flash[:notice] = 'Create successful'
+      flash[:notice] = 'Tạo thành công'
     else
-      flash[:error] = 'Create failed'
+      flash[:error] = 'Tạo không thành công'
     end
     redirect_to business_trips_path
   end
@@ -29,9 +29,9 @@ class BusinessTripsController < ApplicationController
   def update
     if @business_trip.update(business_trip_params)
       update_business_trip_personnel
-      flash[:notice] = 'Update successful'
+      flash[:notice] = 'Cập nhật thành công'
     else
-      flash[:error] = 'Update failed'
+      flash[:error] = 'Cập nhật không thành công'
     end
     redirect_to business_trips_path
   end

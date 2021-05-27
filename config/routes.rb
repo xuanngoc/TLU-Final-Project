@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
+  root 'business_trips#index'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
+
+  get '/home', to: 'home#index'
+
+  get '/password_change', to: 'password#edit'
+  post '/password_change', to: 'password#update'
+
+  resources :users
 
   resources :departments do
     resources :personnels

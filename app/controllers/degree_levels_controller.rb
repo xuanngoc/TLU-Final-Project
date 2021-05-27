@@ -18,9 +18,9 @@ class DegreeLevelsController < ApplicationController
   def create
     @degree = DegreeLevel.new(degree_params)
     if @degree.save
-      flash[:notice] = 'Create successful'
+      flash[:notice] = 'Tạo thành công'
     else
-      flash[:alert] = 'Create failed'
+      flash[:alert] = 'Tạo không thành công'
     end
     redirect_to degree_levels_path
   end
@@ -30,9 +30,9 @@ class DegreeLevelsController < ApplicationController
 
   def update
     if  @degree.update(degree_params)
-      flash[:notice] = 'Create successful'
+      flash[:notice] = 'Tạo thành công'
     else
-      flash[:alert] = 'Create failed'
+      flash[:alert] = 'Tạo không thành công'
     end
     redirect_to degree_levels_path
   end

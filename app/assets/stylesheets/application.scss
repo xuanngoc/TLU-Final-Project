@@ -160,3 +160,8 @@ hr {
 .nav-item:hover .side-bar-child-item {
   display: block
 }
+
+.pagy-bootstrap-nav {
+  display: flex;
+  justify-content: center;
+}

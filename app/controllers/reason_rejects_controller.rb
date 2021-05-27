@@ -6,9 +6,9 @@ class ReasonRejectsController < ApplicationController
       request_payment = RequestPayment.find(reason_reject_params[:request_payment_id])
       request_payment.update(status: 6)
 
-      flash[:notice] = 'Create successful'
+      flash[:notice] = 'Tạo thành công'
     else
-      flash[:alert] = 'Create failed'
+      flash[:alert] = 'Tạo không thành công'
     end
     redirect_to list_payment_request_path
   end

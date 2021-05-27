@@ -21,6 +21,7 @@ gem 'devise'
 gem 'blueprinter'
 gem 'faker'
 gem "cancan"
+gem 'pagy', '~> 3.5'
 
 gem 'pdfkit'
 gem 'render_anywhere'
