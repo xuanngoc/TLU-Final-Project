@@ -35,6 +35,11 @@
         <%= link_to('Báo cáo', report_request_payments_path, class: "nav-link") %>
       </li>
       <hr class="bg-info">
+      <% if current_user.admin? %>
+        <li class="nav-item">
+          <%= link_to('Quản lý người dùng', users_path, class: "nav-link") %>
+        </li>
+      <% end %>
     </ul>
   </nav>
 </div>

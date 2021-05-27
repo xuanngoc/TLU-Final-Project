@@ -16,9 +16,9 @@ class PersonnelsController < ApplicationController
     personnel = User.new(personnel_params)
     personnel.role = :personnel
     if personnel.save
-      flash[:notice] = 'Create successful'
+      flash[:notice] = 'Tạo thành công'
     else
-      flash[:notice] = 'Create failed'
+      flash[:notice] = 'Tạo không thành công'
     end
     redirect_to department_personnels_path
   end

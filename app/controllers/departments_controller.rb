@@ -14,9 +14,9 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
     if @department.save!
-      flash[:notice] = 'Create successful'
+      flash[:notice] = 'Tạo thành công'
     else
-      flash[:alert] = 'Create failed'
+      flash[:alert] = 'Tạo không thành công'
     end
     redirect_to departments_path
   end
@@ -26,9 +26,9 @@ class DepartmentsController < ApplicationController
 
   def update
     if @department.update(department_params)
-      flash[:notice] = 'Update successfull'
+      flash[:notice] = 'Cập nhật thành côngl'
     else
-      flash[:alert] = 'Update failed'
+      flash[:alert] = 'Cập nhật không thành công'
     end
     redirect_to departments_path
   end

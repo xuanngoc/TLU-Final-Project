@@ -8,18 +8,18 @@ class CostTypesController < ApplicationController
   def create
     cost_type = CostType.new(cost_type_params)
     if cost_type.save
-      flash[:notice] = 'Create successful'
+      flash[:notice] = 'Tạo thành công'
     else
-      flash[:alert] = 'Create failed'
+      flash[:alert] = 'Tạo không thành công'
     end
     redirect_to cost_types_path
   end
 
   def update
     if @cost_type.update(cost_type_params)
-      flash[:notice] = 'Update successful'
+      flash[:notice] = 'Cập nhật thành công'
     else
-      flash[:alert] = 'Update failed'
+      flash[:alert] = 'Cập nhật không thành công'
     end
     redirect_to cost_types_path
   end

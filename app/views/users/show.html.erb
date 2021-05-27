@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-4"></div>
+
+  <div>
+    <h5 id="department-name" class="text-center text-secondary"><%= @user.degree_level.department.name %></h5>
+    <h5 id="degree-name" class="text-center text-secondary"><%= @user.degree_level.name %> </h5>
+    <p class="name"></p>
+
+    <div class="full_name form-group">
+      <label class="font-weight-bold">Họ tên</label>
+      <p><%= @user.full_name %></p>
+    </div>
+
+    <div class="email form-group">
+      <label class="font-weight-bold">Email</label>
+      <p><%= @user.email %></p>
+    </div>
+
+    <div class="birthday form-group ">
+      <label class="font-weight-bold">Ngày sinh</label>
+      <p><%= @user.birthday %></p>
+    </div>
+
+    <div class="gender form-group">
+      <label class="font-weight-bold">Giới tính</label>
+      <p><%= @user.gender %></p>
+    </div>
+
+    <div class="address form-group">
+      <label class="font-weight-bold">Địa chỉ</label>
+      <p><%= @user.address %></p>
+    </div>
+
+    <div class="mt-5">
+      <%= link_to "Sửa thông tin", edit_user_path(@user), class: "btn btn-primary mr-5" %>
+      <%= link_to "Đổi mật khẩu", password_change_path(user_id: @user.id), class: "btn btn-info ml-5" %>
+    </div>
+  </div>
+
+
+  <div class="col-4"></div>
+</div>
+

@@ -13,6 +13,12 @@
       <li class="nav-item">
         <%= link_to('Quản lý yêu cầu thanh toán', list_payment_request_path, class: "nav-link") %>
       </li>
+
+      <% if current_user.financial_department? %>
+        <li class="nav-item">
+          <%= link_to('Báo cáo', report_request_payments_path, class: "nav-link") %>
+        </li>
+      <% end %>
     </ul>
   </nav>
 </div>
