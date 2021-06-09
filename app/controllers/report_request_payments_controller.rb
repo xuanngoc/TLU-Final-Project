@@ -2,7 +2,7 @@ class ReportRequestPaymentsController < ApplicationController
   before_action :load_request_payment, only: [:show]
 
   def index
-    @request_payments = RequestPayment.all
+    @request_payments = RequestPayment.where(id: ability_request_payment_ids)
     if params[:from_date].present?
       from_date = Date.parse(params[:from_date])
       if params[:to_date].present?

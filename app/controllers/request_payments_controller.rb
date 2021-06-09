@@ -11,10 +11,10 @@ class RequestPaymentsController < ApplicationController
   end
 
   def list_request_payment
+    @request_payments = RequestPayment.where(id: ability_request_payment_ids)
+
     if params[:status].present?
-      @request_payments = RequestPayment.where(status: params[:status])
-    else
-      @request_payments = RequestPayment.all
+      @request_payments = @request_payments.where(status: params[:status])
     end
   end
 

@@ -30,12 +30,17 @@ class User < ApplicationRecord
     self.role == "personnel"
   end
 
+  def department
+    return nil if self.admin?
+    self.degree_level.department
+  end
+
   def head_of_department?
     User.where(id: Department.all.pluck(:user_id)).include?(self)
   end
 
   def financial_department?
-    User.where(degree_level: Department.find_by(name: 'Bộ phận tài vụ').degree_levels).include?(self)
+    self.department.name == 'Bộ phận tài vụ'
   end
 
   def head_of_financial_department?
