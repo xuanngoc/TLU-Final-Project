@@ -38,12 +38,12 @@
             <td class="align-middle">
               <ul class="limit-cost align-middle">
                 <% d.limit_costs.each do |limit| %>
-                  <li ><%= limit.cost_type.name %> : <span class="currency"><%= limit.limit %></span></li>
+                  <li ><%= limit.cost_type.name %> : <span><%= limit.limit %></span></li>
                 <% end %>
               </ul>
             </td>
             <td class="align-middle">
-              <% if current_user.financial_department? or current_user.admin? %>
+              <% if current_user.admin? or current_user.financial_department?  %>
                 <button type="button" class="btn btn-secondary" data-toggle="modal"
                   data-target="#editModalLimit"
                   data-id="<%= d.id %>" data-name="<%= d.name %>" data-department="<%= key.name %>" >

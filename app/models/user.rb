@@ -40,7 +40,7 @@ class User < ApplicationRecord
   end
 
   def financial_department?
-    self.department.name == 'Bộ phận tài vụ'
+    self.department&.name == 'Bộ phận tài vụ'
   end
 
   def head_of_financial_department?
