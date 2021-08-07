@@ -19,7 +19,7 @@
             <% end %>
           </td>
           <td><%= user.gender %></td>
-          <td><%= user.birthday %></td>
+          <td><%= user.birthday.strftime("%d-%m-%Y") %></td>
           <td><%= user.degree_level.department.name %></td>
         </tr>
       <% end %>

@@ -56,7 +56,7 @@
         <tr>
           <th scope="row"><%= index + 1 %></th>
           <td class="text-danger"><%= link_to request.business_trip.destination, report_request_payment_path(request) %></td>
-          <td><%= request.business_trip.from_date %> - <%= request.business_trip.to_date %></td>
+          <td><%= request.business_trip.from_date.strftime("%d-%m-%Y") %> - <%= request.business_trip.to_date.strftime("%d-%m-%Y") %></td>
           <td><%= request.business_trip.users.count %></td>
           <td class="currency"><%= request.total_amount %></td>
           <td><%= request.status %></td>
