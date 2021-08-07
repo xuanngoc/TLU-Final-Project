@@ -31,11 +31,11 @@
     <div class="form-group row ">
       <div class="col-6" style="padding-left: 0">
         <label class="font-weight-bold" >Từ ngày:</label>
-        <label><%= @request_payment.business_trip.from_date %></label>
+        <label><%= @request_payment.business_trip.from_date.strftime("%d-%m-%Y") %></label>
       </div>
       <div class="col-6" >
         <label class="font-weight-bold">Đến ngày:</label>
-        <label><%= @request_payment.business_trip.to_date %></label>
+        <label><%= @request_payment.business_trip.to_date.strftime("%d-%m-%Y") %></label>
       </div>
     </div>
     <label class="font-weight-bold ">Danh sách nhân viên tham gia</label><br>

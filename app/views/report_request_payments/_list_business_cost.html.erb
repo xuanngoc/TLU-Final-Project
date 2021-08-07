@@ -25,7 +25,7 @@
               <td class=" form-group"><%= cost.receipt.template_number %></td>
               <td class=" form-group"><%= cost.receipt.symbols %></td>
               <td class=" form-group"><%= cost.receipt.receipt_number %></td>
-              <td class=" form-group pr-5 amount-input" style="text-align: right"><%= cost.receipt.amount %></td>
+              <td class=" form-group pr-5 amount-input currency" style="text-align: right"><%= cost.receipt.amount %></td>
             </tr>
           <% end %>
         <% end %>
@@ -47,7 +47,7 @@
             <tr>
               <th scope='col' style="width: 5%;"><%= index + 1 %></th>
               <td class=" form-group " style="width: 15%;"><%= cost.cost_type.name %></td>
-              <td class=" form-group w-100 pr-5 amount-input"  style="text-align: right"><%= cost.receipt.amount %></td>
+              <td class=" form-group w-100 pr-5 amount-input currency"  style="text-align: right"><%= cost.receipt.amount %></td>
             </tr>
           <% end %>
         <% end %>
@@ -57,7 +57,7 @@
     <div class="font-weight-bold mr-5 text-right mb-3" style="font-size: 1.2em">
       Tổng chi phí
     </div>
-    <div class="font-weight-bold mr-5 text-right" style="font-size: 1.4em">
+    <div class="font-weight-bold mr-5 text-right currency" style="font-size: 1.4em">
       <%= @request_payment.total_amount %>
     </div>
 

@@ -38,7 +38,7 @@
             <td class="align-middle">
               <ul class="limit-cost align-middle">
                 <% d.limit_costs.each do |limit| %>
-                  <li ><%= limit.cost_type.name %> : <span><%= limit.limit %></span></li>
+                  <li ><%= limit.cost_type.name %> : <span class="currency"><%= limit.limit %></span></li>
                 <% end %>
               </ul>
             </td>
